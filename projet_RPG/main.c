@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "StuffItem.h"
-#include "Mob.h"
+
+/*#include "Mob.h"
 #include "Equipement.h"
 #include "MobRace.h"
 #include "Player.h"
-#include "Usableitem.h"
+#include "Usableitem.h"*/
+//#include "StuffItem.c"
 
 
 

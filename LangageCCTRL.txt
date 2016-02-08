@@ -1,0 +1,144 @@
+﻿Vous devez réaliser : 
+	- Un jeu de "rpg" (role play game)
+
+	- Le jeu se déroule en plusieurs étapes :
+		- 1 : le joueur choisi son nom
+		- 2 : le joueur répartie ses différents points d'attributs
+		- 3 : le joueur choisi son équipement de base
+		- 4 : le joueur choisi 3 potions à mettre dans son inventaire
+		- 5 : le joueur combat une liste d'ennemi 1 à 1 dans un donjon
+		- 6 : a tour de rôle le joueur attaque la créature puis la créature l'attaque
+		- 7 : si le joueur meurt il doit recommencer à l'étape 4 tant qu'il possède encore des vies et perd tout son or
+		- 8 : si le joueur bat l'ensemble des ennemis d'un donjon il gagne un montant d'or
+		- 9 : le joueur arrive à la taverne ou il peut acheter de nouveaux équipements ou potions
+		- 10 : le joueur arrive dans un nouveau donjon avec plus d'ennemis retour à l'étape 5
+		- 11 : lorsque le joueur ne possède plus aucun point de vie son score s'affiche avec les informations suivantes
+			- nombre d'ennemis tués
+			- nombre de donjon fini
+
+	- Le programme permet de sauvegarder et de charger une partie
+
+	- Le joueur à le choix entre commencer une nouvelle partie ou charger la dernière partie au lancement du jeu
+
+	- Le jeu fonctionne avec une mécanique de jet de dés :
+		- Une attaque est un somme de dés de valeur variable (exemple : 1d6+2d4 => l'attaque pourra infliger de 3 à 14 points de dégat 
+			=> une chance de tirer un nombre entre 1 et 6, deux chance de tirer un nombre entre 1 et 4)
+		- Avant d'effectuer les dégats d'une attaque l'adversaire lance un jet d'esquive (exemple : 1d8 
+			=> si l'adversaire réalise la valeur la plus élevé de son dés d'esquive "ici 8" alors il ne subit aucun dégat 
+				=> une chance sur 8 d'esquiver une attaque)
+		- Lors de l'application des dégats le défenseur applique d'abors sa défense relative en % 
+			(exemple : 5 dégats entrant avec une défense relative de 5% le calcul sera 5-(5*5/100) = 4 => on prendra l'entier inférieur)
+		- Après l'application de la défense relative nous appliquerons la défense absolue en entier 
+			(exemple : 4 de dégats après application de la défense relative avec une 
+			défense absolue de 2 donnera 4-2 = 2 le défenseur subira donc 2 points de dégat)
+
+	- L'ensemble de l'équipement d'une créature lui octroi des bonus à ses statistiques de base :
+		- une créature qui possède par défaut 1d2 de dégat ayant une pièce d'équipement rajoutant 1d5 de dégat infligera 1d2+1d5 dégat potentiel
+		- L'équipement peut ou non augmenter certain statistique 
+		- Lors de l'attaque ou la défense d'une créature il faudra prendre en compte l'ensemble de l'équipement des créatures 
+
+	- La race d'une créature augmente ses statistiques :
+		- Les bonus sont exprimé en % :
+			- exemple 1 : point de vie = 40, total de l'équipement pour les points de vies = 10, bonus point de vie = 10% 
+				=> point de vie total = 55 point de vie ATTENTION la vie initial de la créature est toujours égale à 40 point de vie
+			- exemple 2 : esquive créature = 1d20, bonus esquive = 12% => esquive total = 1d18
+			- exemple 3 : defense relative créature = 5%, total de l'équipement pour la défense relative = 15%, bonus défense absolue = 10% 
+				=> défense absolue total = 5+15+10 = 30%
+			- exemple 4 : attaque créature = 1d4, total de l'équipement pour l'attaque = 2d12 + 2d6, bonus d'attaque = 20% 
+				=> attaque total = valeur de l'attaque tiré + (valeur de l'attaque tiré * 20 /100) => on prendra la partie entière 
+				=> valeur tiré max possible dans l'example 4+24+12 = 40, 40 + (40*20/100) = 48
+
+	- Les potions effectue un effet pendant un nombre de tour définit et applique un bonus au monstre :
+		- Plusieurs potions peuvent être active en même temps
+		- Prendre une potions fini le tour de la créature
+		- L'effet d'une potion s'applique pendant le tour courant et jusqu'à la fin des tours d'efficience de la potion
+		- Une potion peut être utiliser sur la créature ou son ennemi
+		- Les potions peuvent appliquer des bonus ou des malus
+
+
+	- Le projet doit être à minima découpé en plusieurs fichiers :
+		- main.c : lance le jeu
+		- MobRace.h : contient la race du créature (humain, elfe, nain, ...) :
+			- nom
+			- bonus point vie
+			- bonus attaque
+			- bonus defense relative
+			- bonus defense absolue
+			- bonus esquive
+		- MobRace.c : contient les fonctions suivantes :
+		- Usableitem.h : contient l'ensemble des objets utilisable par une créature :
+			- nom
+			- valeur (valeur en or)
+			- tour d'effectivité
+			- action point vie
+			- action attaque
+			- action defense relative
+			- action defense absolue
+			- action esquive
+		- Usableitem.c : contient les fonctions suivantes :
+			- doUsableItemEffect(Usableitem* item, Mob* mob)
+			- removeUsableItemEffect(Usableitem* item, Mob* mob)
+			- sellUsableitem(Usableitem* item, Player* player)
+		- StuffItem.h : contient l'ensemble des caractéristiques d'un objet porté par une créature :
+			- nom
+			- valeur (valeur en or)
+			- type (tete, torse, jambe, botte, main droite, main gauche)
+			- point de vie
+			- attaque
+			- defense relative
+			- defense absolue
+		- StuffItem.c : contient les fonctions suivantes :
+			- eqpStuffItem(StuffItem* item, Mob* mob)
+			- unEqpStuffItem(StuffItem* item, Mob* mob)
+			- sellStuffItem(StuffItem* item, Player* player)
+		- Equipement.h : contient l'ensemble des objets porté par une créature :
+			- tete
+			- torse
+			- jambe
+			- botte
+			- main droite
+			- main gauche
+		- Equipment.c : contient les fonctions suivantes :
+			- calcAttack(Equipment* equipment, Mob* mob)
+			- calcRelDef(Equipment* equipment, Mob* mob)
+			- calcAbsDef(Equipment* equipment, Mob* mob)
+		- Mob.h : contient l'ensemble des informations liée à une créature :
+			- identifiant
+			- nom
+			- mobrace
+			- point de vie
+			- attaque
+			- defense relative (% de reduction de dégat)
+			- defense absolue (reduction de dégat fixe)
+			- esquive
+			- equipement
+			- butin (comprend une liste de usableitem ET/OU de stuffitem)
+		- Mob.c : contient les fonctions suivantes :
+			- hitMob(Mob* attack, Mob* defence)
+			- hitPlayer(Mob* attack, Player* defence)
+			- dropLoot(Mob* mob, Player* player)
+			- createRandomMob(char name[20], int pointsToAttribut)
+		- Player.h : contient l'ensemble des informations nécessaire au joueur humain ou IA
+			- identifiant
+			- mob
+			- nombre de vie (nombre de fois ou le player peut mourrir)
+			- or
+			- butin
+		- Player.c : contient les fonctions suivantes :
+			- createPlayer(char name[20], int pointsToAttribut)
+		- GameUtil.c : contient l'ensemble des fonctions utilitaires (redondante ou non) du programme
+			- doRand(int start, int end)
+			- https://openclassrooms.com/courses/les-listes-doublement-chainees-en-langage-c
+			- ...
+
+		- NB : 
+			- Chaque structure possedera un constructeur prennant en parametre l'ensemble de ses attributs
+			- La description des attributs et des fonctions de chaque fichier n'est pas exhaustif
+
+
+	- Se qui doit être rendu au plus tard la date du 10/04/2016 23h59:
+		- Le projet code-blocks
+		- L'exécutable du projet
+		- La documentation utilisateur au format PDF
+		- La documentation technique au format PDF et commentaire de code (obligatoire)
+		- Le cahier des charges du projet au format PDF

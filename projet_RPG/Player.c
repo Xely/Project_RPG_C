@@ -69,9 +69,23 @@ void createPlayer(char name[20], /*int pointsToAttribut*/ Dlist* itemsList)
     //Dlist* playerItemList = dlist_new();
     //createItemsList();
 
-    Equipment* playerEquipment = Equipment_ctor(itemsList[6], itemsList[7], itemsList[8], itemsList[9], itemsList[10], itemsList[11]);
-    Mob* playerMob = Mob_ctor(0, name[20], human, 100, 10, 50, 10, 10, playerEquipment);
-    Player* player = Player_ctor(0, playerMob, 3, 500, playerItemList);
+    StuffItem temp_head = returnListElement(itemsList,6);
+    StuffItem* phead = &temp_head;
+    StuffItem temp_chest = returnListElement(itemsList,7);
+    StuffItem* pchest = &temp_chest;
+    StuffItem temp_legs = returnListElement(itemsList,8);
+    StuffItem* plegs = &temp_legs;
+    StuffItem temp_boots = returnListElement(itemsList,9);
+    StuffItem* pboots = &temp_boots;
+    StuffItem temp_lefthand = returnListElement(itemsList,10);
+    StuffItem* plefthand = &temp_lefthand;
+    StuffItem temp_righthand = returnListElement(itemsList,11);
+    StuffItem* prighthand = &temp_righthand;
+
+    Equipment* playerEquipment = Equipment_ctor(phead, pchest, plegs, pboots, plefthand, prighthand);
+
+    /*Mob* playerMob = Mob_ctor(0, name[20], human, 100, 10, 50, 10, 10, playerEquipment);
+    Player* player = Player_ctor(0, playerMob, 3, 500, playerItemList);*/
 
 }
 

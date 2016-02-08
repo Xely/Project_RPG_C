@@ -19,7 +19,8 @@ typedef struct Mob
 } Mob;
 
 Mob* Mob_ctor(int id, char* name, MobRace* mobRace, int hp, int attack, int relativeDefense, int absoluteDefense,
-               int dodge, Equipment* equipment) {
+               int dodge, Equipment* equipment)
+{
     Mob* p = malloc(sizeof(Mob));
     p->id = id;
     p->name = name;
@@ -28,7 +29,7 @@ Mob* Mob_ctor(int id, char* name, MobRace* mobRace, int hp, int attack, int rela
     p->attack = attack;
     p->relativeDefense = relativeDefense;
     p->absoluteDefense = absoluteDefense;
-    p->dodge;
+    p->dodge = dodge;
     p->equipment = equipment;
 
     return p;

@@ -12,12 +12,16 @@
 	<stdio.h>
 	<stdlib.h>
 
-1454941462 source:d:\documents\google drive\projet c - rpg\projet_rpg\mobrace.c
+1454963381 source:d:\documents\google drive\projet c - rpg\projet_rpg\mobrace.c
 	"MobRace.h"
 
-1454868089 source:d:\documents\google drive\projet c - rpg\projet_rpg\player.c
+1454963381 source:d:\documents\google drive\projet c - rpg\projet_rpg\player.c
 	<stdio.h>
 	<stdlib.h>
+	"StuffItem.h"
+	"Equipement.h"
+	"Mob.h"
+	"StuffItem.c"
 
 1454868089 source:d:\documents\google drive\projet c - rpg\projet_rpg\stuffitem.c
 	<stdio.h>
@@ -27,7 +31,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1454945906 source:d:\documents\google drive\projet c - rpg\projet_rpg\main.c
+1454965198 source:d:\documents\google drive\projet c - rpg\projet_rpg\main.c
 	<stdio.h>
 	<stdlib.h>
 	"StuffItem.h"
@@ -36,25 +40,34 @@
 	"MobRace.h"
 	"Player.h"
 	"Usableitem.h"
+	"StuffItem.c"
 
-1454942714 d:\documents\google drive\projet c - rpg\projet_rpg\stuffitem.h
+1454965533 d:\documents\google drive\projet c - rpg\projet_rpg\stuffitem.h
 
-1454943507 d:\documents\google drive\projet c - rpg\projet_rpg\mob.h
+1454965009 d:\documents\google drive\projet c - rpg\projet_rpg\mob.h
 	"Equipement.h"
 	"MobRace.h"
 
-1454943507 d:\documents\google drive\projet c - rpg\projet_rpg\equipement.h
+1454965423 d:\documents\google drive\projet c - rpg\projet_rpg\equipement.h
 	"StuffItem.h"
 
-1454937429 d:\documents\google drive\projet c - rpg\projet_rpg\mobrace.h
+1454965198 d:\documents\google drive\projet c - rpg\projet_rpg\mobrace.h
 	<stdio.h>
 	<stdlib.h>
 
-1454943507 d:\documents\google drive\projet c - rpg\projet_rpg\player.h
+1454964438 d:\documents\google drive\projet c - rpg\projet_rpg\player.h
 	"Mob.h"
 	"Usableitem.h"
 
-1454929094 d:\documents\google drive\projet c - rpg\projet_rpg\usableitem.h
+1454965009 d:\documents\google drive\projet c - rpg\projet_rpg\usableitem.h
 
 1454937742 source:d:\documents\google drive\projet c - rpg\projet_rpg\itemlibrary.c
+
+1454958933 d:\documents\google drive\projet c - rpg\projet_rpg\stuffitem.c
+	<stdio.h>
+	<stdlib.h>
+	"StuffItem.h"
+	"Equipement.h"
+	"Mob.h"
+	"player.h"
 

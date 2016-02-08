@@ -14,7 +14,8 @@ typedef struct Player
     UsableItem** playerUsableItemsList;
 } Player;
 
-Player* Player_ctor(int id, Mob* mob, int lives, int gold, StuffItem** playerItemsList, UsableItem** playerUsableItemsList) {
+Player* Player_ctor(int id, Mob* mob, int lives, int gold, StuffItem** playerItemsList, UsableItem** playerUsableItemsList)
+{
     Player* p = malloc(sizeof(Player));
     p->id = id;
     p->mob = mob;

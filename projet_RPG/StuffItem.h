@@ -1,9 +1,10 @@
 #ifndef STUFFITEM_H_INCLUDED
 #define STUFFITEM_H_INCLUDED
 
+
 // contains every non-usable item in the game
-typedef struct StuffItem
-{
+
+typedef struct StuffItem{
     char* name;
     int goldValue;
     // typeId : 0=head, 1=chest, 2=leggings, 3=boots, 4=lefthand, 5=righthand
@@ -26,8 +27,5 @@ StuffItem* StuffItem_ctor(char* name, int goldValue, int typeId, int hp, int att
     p->absoluteDefense = absoluteDefense;
     return p;
 }
-
-
-
 
 #endif

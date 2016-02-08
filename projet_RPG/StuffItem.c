@@ -63,6 +63,27 @@ Dlist *dlist_append(Dlist *p_list, StuffItem stuffItem)
     return p_list;
 }
 
+StuffItem returnListElement(Dlist *p_list, int position)
+{
+    int i = 0;
+    struct node *p_temp = p_list->p_head;
+    for(i=0;i<position-1;i++){
+        p_temp = p_temp->p_next;
+    }
+    return p_temp->stuffItem;
+}
+
+int returnListElementGold(Dlist *p_list, int position)
+{
+    int i = 0;
+    struct node *p_temp = p_list->p_head;
+    for(i=0;i<position-1;i++){
+        p_temp = p_temp->p_next;
+    }
+    StuffItem item = p_temp->stuffItem;
+    return item.goldValue;
+}
+
 void createItemsList()
 {
     Dlist* itemsList = dlist_new();
@@ -80,6 +101,7 @@ void createItemsList()
     StuffItem* norighthand = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
     dlist_append(itemsList, *norighthand);
 
+
     StuffItem* fatheadarmor = StuffItem_ctor("Super casque", 150, 0, 12, 0, 7, 2);
     dlist_append(itemsList, *fatheadarmor);
     StuffItem* fatchestarmor = StuffItem_ctor("Super torse", 230, 1, 18, 1, 12, 3);
@@ -94,7 +116,7 @@ void createItemsList()
     dlist_append(itemsList, *fatsword);
 
 
-    createPlayer("Julien", itemsList);
+        //createPlayer("Julien", itemsList);
 
 }
 
