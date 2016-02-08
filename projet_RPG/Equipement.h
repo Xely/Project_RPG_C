@@ -1,4 +1,7 @@
+#ifndef EQUIPEMENT_H_INCLUDED
+#define EQUIPEMENT_H_INCLUDED
 
+#include "StuffItem.h"
 
 typedef struct Equipment
 {
@@ -20,3 +23,5 @@ Equipment* Equipment_ctor(StuffItem head, StuffItem chest, StuffItem leggings, S
     p->rightHand = rightHand;
     return p;
 }
+
+#endif

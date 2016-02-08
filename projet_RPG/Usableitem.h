@@ -1,3 +1,5 @@
+#ifndef USABLEITEM_H_INCLUDED
+#define USABLEITEM_H_INCLUDED
 
 
 typedef struct UsableItem
@@ -12,8 +14,8 @@ typedef struct UsableItem
     int dodge;
 } UsableItem;
 
-MobRace* MobRace_ctor(char* name, int goldValue, int duration, int hp, int attack, int relativeDefense, int absoluteDefense, int dodge) {
-    MobRace* p = malloc(sizeof(MobRace));
+UsableItem* UsableItem_ctor(char* name, int goldValue, int duration, int hp, int attack, int relativeDefense, int absoluteDefense, int dodge) {
+    UsableItem* p = malloc(sizeof(UsableItem));
     p->name = name;
     p->goldValue = goldValue;
     p->duration = duration;
@@ -25,3 +27,5 @@ MobRace* MobRace_ctor(char* name, int goldValue, int duration, int hp, int attac
     return p;
 }
 
+
+#endif

@@ -1,4 +1,8 @@
+#ifndef MOB_H_INCLUDED
+#define MOB_H_INCLUDED
 
+#include "Equipement.h"
+#include "MobRace.h"
 
 typedef struct Mob
 {
@@ -29,3 +33,6 @@ Mob* Mob_ctor(int id, char* name, MobRace mobRace, int hp, int attack, int relat
 
     return p;
 }
+
+
+#endif

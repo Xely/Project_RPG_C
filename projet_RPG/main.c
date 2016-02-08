@@ -1,13 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "StuffItem.h"
+#include "Mob.h"
+#include "Equipement.h"
+#include "MobRace.h"
+#include "Player.h"
+#include "Usableitem.h"
+
+
+
 //#include "GameUtil.c"
 
 int main()
 {
-    int i = 0;
 
-    for(i=0;i<50;i++){
-        printf("%d",dice(6));
-    }
     return 0;
 }
