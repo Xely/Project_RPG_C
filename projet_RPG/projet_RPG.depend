@@ -1,0 +1,34 @@
+# depslib dependency file v1.0
+1454868089 source:d:\documents\google drive\projet c - rpg\projet_rpg\equipement.c
+	<stdio.h>
+	<stdlib.h>
+
+1454868020 source:d:\documents\google drive\projet c - rpg\projet_rpg\gameutil.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
+1454868089 source:d:\documents\google drive\projet c - rpg\projet_rpg\mob.c
+	<stdio.h>
+	<stdlib.h>
+
+1454868020 source:d:\documents\google drive\projet c - rpg\projet_rpg\mobrace.c
+	<stdio.h>
+	<stdlib.h>
+
+1454868089 source:d:\documents\google drive\projet c - rpg\projet_rpg\player.c
+	<stdio.h>
+	<stdlib.h>
+
+1454868089 source:d:\documents\google drive\projet c - rpg\projet_rpg\stuffitem.c
+	<stdio.h>
+	<stdlib.h>
+
+1454868089 source:d:\documents\google drive\projet c - rpg\projet_rpg\usableitem.c
+	<stdio.h>
+	<stdlib.h>
+
+1454868171 source:d:\documents\google drive\projet c - rpg\projet_rpg\main.c
+	<stdio.h>
+	<stdlib.h>
+
