@@ -11,14 +11,14 @@ typedef struct MobRace
 }
 
 MobRace* MobRace_ctor(char* name, int hp, int attack, int relativeDefense, int absoluteDefense, int dodge) {
-  MobRace* p = malloc(sizeof(MobRace));
-  p->name = name;
-  p->hp = hp;
-  p->attack = attack;
-  p->relativeDefense = relativeDefense;
-  p->absoluteDefense = absoluteDefense;
-  p->dodge;
-  return p;
+    MobRace* p = malloc(sizeof(MobRace));
+    p->name = name;
+    p->hp = hp;
+    p->attack = attack;
+    p->relativeDefense = relativeDefense;
+    p->absoluteDefense = absoluteDefense;
+    p->dodge;
+    return p;
 }
 
 struct node
