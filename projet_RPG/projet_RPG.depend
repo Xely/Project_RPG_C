@@ -71,3 +71,84 @@
 	"Mob.h"
 	"player.h"
 
+1454968729 source:d:\documents\cours\projet c - rpg\projet_rpg\gameutil.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"GameUtil.h"
+
+1454937742 source:d:\documents\cours\projet c - rpg\projet_rpg\itemlibrary.c
+
+1454970113 source:d:\documents\cours\projet c - rpg\projet_rpg\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Equipement.h"
+	"Player.h"
+	"Usableitem.h"
+	"StuffItem.c"
+
+1454971616 d:\documents\cours\projet c - rpg\projet_rpg\equipement.h
+	"StuffItem.h"
+
+1454971631 d:\documents\cours\projet c - rpg\projet_rpg\stuffitem.h
+
+1454970770 d:\documents\cours\projet c - rpg\projet_rpg\mobrace.h
+	<stdio.h>
+	<stdlib.h>
+	"Usableitem.h"
+
+1454970793 d:\documents\cours\projet c - rpg\projet_rpg\player.h
+	"Mob.h"
+
+1454970756 d:\documents\cours\projet c - rpg\projet_rpg\mob.h
+	"MobRace.h"
+	"Equipement.h"
+
+1454970764 d:\documents\cours\projet c - rpg\projet_rpg\usableitem.h
+
+1454967997 source:d:\documents\cours\projet c - rpg\projet_rpg\equipement.c
+	<stdio.h>
+	<stdlib.h>
+	"Equipement.h"
+
+1454970217 source:d:\documents\cours\projet c - rpg\projet_rpg\mob.c
+	<stdio.h>
+	<stdlib.h>
+	"Mob.h"
+	"Equipement.h"
+	"MobRace.h"
+
+1454968208 source:d:\documents\cours\projet c - rpg\projet_rpg\mobrace.c
+	"MobRace.h"
+
+1454969371 d:\documents\cours\projet c - rpg\projet_rpg\gameutil.h
+
+1454971662 d:\documents\cours\projet c - rpg\projet_rpg\stuffitem.c
+	<stdio.h>
+	<stdlib.h>
+	"Player.h"
+	"Mob.h"
+	"Equipement.h"
+	"StuffItem.h"
+
+1454970861 source:d:\documents\cours\projet c - rpg\projet_rpg\player.c
+	<stdio.h>
+	<stdlib.h>
+	"Player.h"
+	"Mob.h"
+	"Equipement.h"
+	"StuffItem.h"
+
+1454971662 source:d:\documents\cours\projet c - rpg\projet_rpg\stuffitem.c
+	<stdio.h>
+	<stdlib.h>
+	"Player.h"
+	"Mob.h"
+	"Equipement.h"
+	"StuffItem.h"
+
+1454970217 source:d:\documents\cours\projet c - rpg\projet_rpg\usableitem.c
+	<stdio.h>
+	<stdlib.h>
+	"Usableitem.h"
+

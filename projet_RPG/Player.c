@@ -1,13 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#ifndef PLAYER_C_INCLUDED
-#define PLAYER_C_INCLUDED
-
-#include "StuffItem.h"
-#include "Equipement.h"
+#include "Player.h"
 #include "Mob.h"
-#include "StuffItem.c"
+#include "Equipement.h"
+#include "StuffItem.h"
+
+
+
+
+Player* Player_ctor(int id, Mob* mob, int lives, int gold, StuffItem** playerItemsList, UsableItem** playerUsableItemsList)
+{
+    Player* p = malloc(sizeof(Player));
+    p->id = id;
+    p->mob = mob;
+    p->lives = lives;
+    p->gold = gold;
+    p->playerItemsList = playerItemsList;
+    p->playerUsableItemsList = playerUsableItemsList;
+    return p;
+}
 
 /*struct node
 {
@@ -64,7 +76,7 @@ Dlist *dlist_append(Dlist *p_list, MobRace mobRace)
 }*/
 
 
-void createPlayer(char name[20], /*int pointsToAttribut*/ Dlist* itemsList)
+void createPlayer(char name[20], /*int pointsToAttribut*/ Dlist *itemsList)
 {
     //Dlist* playerItemList = dlist_new();
     //createItemsList();
@@ -84,10 +96,10 @@ void createPlayer(char name[20], /*int pointsToAttribut*/ Dlist* itemsList)
 
     Equipment* playerEquipment = Equipment_ctor(phead, pchest, plegs, pboots, plefthand, prighthand);
 
+
+
     /*Mob* playerMob = Mob_ctor(0, name[20], human, 100, 10, 50, 10, 10, playerEquipment);
     Player* player = Player_ctor(0, playerMob, 3, 500, playerItemList);*/
 
 }
 
-
-#endif

@@ -1,27 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#ifndef STUFFITEM_C_INCLUDED
-#define STUFFITEM_H_INCLUDED
-
-#include "StuffItem.h"
-#include "Equipement.h"
+#include "Player.h"
 #include "Mob.h"
-#include "player.h"
+#include "Equipement.h"
+#include "StuffItem.h"
 
-struct node
-{
-    StuffItem stuffItem;
-    struct node *p_next;
-    struct node *p_prev;
-};
 
-typedef struct dlist
+
+
+StuffItem* StuffItem_ctor(char* name, int goldValue, int typeId, int hp, int attack, int relativeDefense, int absoluteDefense)
 {
-    size_t length;
-    struct node *p_tail;
-    struct node *p_head;
-} Dlist;
+    StuffItem* p = malloc(sizeof(StuffItem));
+    p->name = name;
+    p->goldValue = goldValue;
+    p->typeId = typeId;
+    p->hp = hp;
+    p->attack = attack;
+    p->relativeDefense = relativeDefense;
+    p->absoluteDefense = absoluteDefense;
+    return p;
+}
+
+
 
 Dlist *dlist_new(void)
 {
@@ -116,7 +117,7 @@ void createItemsList()
     dlist_append(itemsList, *fatsword);
 
 
-        //createPlayer("Julien", itemsList);
+    createPlayer("Julien", itemsList);
 
 }
 
@@ -184,6 +185,3 @@ void sellStuffItem(StuffItem* item, Player* player)
     player->gold += goldGained;
 
 }
-
-
-#endif

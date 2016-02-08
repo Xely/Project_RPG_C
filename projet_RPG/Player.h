@@ -2,7 +2,9 @@
 #define PLAYER_H_INCLUDED
 
 #include "Mob.h"
-#include "Usableitem.h"
+
+
+//void createPlayer(char name[20], /*int pointsToAttribut*/ Dlist* itemsList);
 
 typedef struct Player
 {
@@ -14,17 +16,6 @@ typedef struct Player
     UsableItem** playerUsableItemsList;
 } Player;
 
-Player* Player_ctor(int id, Mob* mob, int lives, int gold, StuffItem** playerItemsList, UsableItem** playerUsableItemsList)
-{
-    Player* p = malloc(sizeof(Player));
-    p->id = id;
-    p->mob = mob;
-    p->lives = lives;
-    p->gold = gold;
-    p->playerItemsList = playerItemsList;
-    p->playerUsableItemsList = playerUsableItemsList;
-    return p;
-}
-
+Player* Player_ctor(int id, Mob* mob, int lives, int gold, StuffItem** playerItemsList, UsableItem** playerUsableItemsList);
 
 #endif

@@ -1,6 +1,3 @@
-#ifndef MOBRACE_C_INCLUDED
-#define MOBRACE_C_INCLUDED
-
 #include "MobRace.h"
 
 /*struct node
@@ -57,6 +54,19 @@ Dlist *dlist_append(Dlist *p_list, MobRace mobRace)
     return p_list;
 }
 */
+
+MobRace* MobRace_ctor(char* name, int hp, int attack, int relativeDefense, int absoluteDefense, int dodge)
+{
+    MobRace* p = malloc(sizeof(MobRace));
+    p->name = name;
+    p->hp = hp;
+    p->attack = attack;
+    p->relativeDefense = relativeDefense;
+    p->absoluteDefense = absoluteDefense;
+    p->dodge = dodge;
+    return p;
+}
+
 void defineRaces()
 {
     //Dlist* racesList = dlist_new();
@@ -76,5 +86,3 @@ void defineRaces()
 
 }
 
-
-#endif

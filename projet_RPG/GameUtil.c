@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "GameUtil.h"
 
 // returns a random integer between StartValue and endValue
 int doRand(int startValue, int endValue)
