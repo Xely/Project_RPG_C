@@ -12,9 +12,8 @@
 	<stdio.h>
 	<stdlib.h>
 
-1454928254 source:d:\documents\google drive\projet c - rpg\projet_rpg\mobrace.c
-	<stdio.h>
-	<stdlib.h>
+1454941462 source:d:\documents\google drive\projet c - rpg\projet_rpg\mobrace.c
+	"MobRace.h"
 
 1454868089 source:d:\documents\google drive\projet c - rpg\projet_rpg\player.c
 	<stdio.h>
@@ -28,7 +27,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1454928852 source:d:\documents\google drive\projet c - rpg\projet_rpg\main.c
+1454945906 source:d:\documents\google drive\projet c - rpg\projet_rpg\main.c
 	<stdio.h>
 	<stdlib.h>
 	"StuffItem.h"
@@ -38,19 +37,24 @@
 	"Player.h"
 	"Usableitem.h"
 
-1454928797 d:\documents\google drive\projet c - rpg\projet_rpg\stuffitem.h
+1454942714 d:\documents\google drive\projet c - rpg\projet_rpg\stuffitem.h
 
-1454928797 d:\documents\google drive\projet c - rpg\projet_rpg\mob.h
+1454943507 d:\documents\google drive\projet c - rpg\projet_rpg\mob.h
 	"Equipement.h"
 	"MobRace.h"
 
-1454928797 d:\documents\google drive\projet c - rpg\projet_rpg\equipement.h
+1454943507 d:\documents\google drive\projet c - rpg\projet_rpg\equipement.h
 	"StuffItem.h"
 
-1454929202 d:\documents\google drive\projet c - rpg\projet_rpg\mobrace.h
+1454937429 d:\documents\google drive\projet c - rpg\projet_rpg\mobrace.h
+	<stdio.h>
+	<stdlib.h>
 
-1454929094 d:\documents\google drive\projet c - rpg\projet_rpg\player.h
+1454943507 d:\documents\google drive\projet c - rpg\projet_rpg\player.h
 	"Mob.h"
+	"Usableitem.h"
 
 1454929094 d:\documents\google drive\projet c - rpg\projet_rpg\usableitem.h
+
+1454937742 source:d:\documents\google drive\projet c - rpg\projet_rpg\itemlibrary.c
 

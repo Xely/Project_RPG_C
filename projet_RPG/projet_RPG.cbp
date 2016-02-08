@@ -58,6 +58,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Usableitem.h" />
+		<Unit filename="itemLibrary.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="itemLibrary.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

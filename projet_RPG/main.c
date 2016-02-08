@@ -13,6 +13,6 @@
 
 int main()
 {
-
+    createItemsList();
     return 0;
 }
