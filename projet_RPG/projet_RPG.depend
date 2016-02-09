@@ -152,3 +152,89 @@
 	<stdlib.h>
 	"Usableitem.h"
 
+1455006963 source:d:\documents\project_rpg\project_rpg_c\projet_rpg\equipement.c
+	<stdio.h>
+	<stdlib.h>
+	"Equipement.h"
+
+1455006963 d:\documents\project_rpg\project_rpg_c\projet_rpg\equipement.h
+	"StuffItem.h"
+
+1455032168 d:\documents\project_rpg\project_rpg_c\projet_rpg\stuffitem.h
+
+1455006963 source:d:\documents\project_rpg\project_rpg_c\projet_rpg\gameutil.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"GameUtil.h"
+
+1455006963 d:\documents\project_rpg\project_rpg_c\projet_rpg\gameutil.h
+
+1455006963 source:d:\documents\project_rpg\project_rpg_c\projet_rpg\itemlibrary.c
+
+1455013707 source:d:\documents\project_rpg\project_rpg_c\projet_rpg\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Player.h"
+	"game.h"
+
+1455030625 d:\documents\project_rpg\project_rpg_c\projet_rpg\player.h
+	"Mob.h"
+
+1455006963 d:\documents\project_rpg\project_rpg_c\projet_rpg\mob.h
+	"MobRace.h"
+	"Equipement.h"
+
+1455030274 d:\documents\project_rpg\project_rpg_c\projet_rpg\mobrace.h
+	<stdio.h>
+	<stdlib.h>
+	"Usableitem.h"
+
+1455006963 d:\documents\project_rpg\project_rpg_c\projet_rpg\usableitem.h
+
+1455006963 d:\documents\project_rpg\project_rpg_c\projet_rpg\stuffitem.c
+	<stdio.h>
+	<stdlib.h>
+	"Player.h"
+	"Mob.h"
+	"Equipement.h"
+	"StuffItem.h"
+
+1455006963 source:d:\documents\project_rpg\project_rpg_c\projet_rpg\mob.c
+	<stdio.h>
+	<stdlib.h>
+	"Mob.h"
+	"Equipement.h"
+	"MobRace.h"
+
+1455032763 source:d:\documents\project_rpg\project_rpg_c\projet_rpg\mobrace.c
+	<stdio.h>
+	<stdlib.h>
+	"MobRace.h"
+
+1455028184 source:d:\documents\project_rpg\project_rpg_c\projet_rpg\player.c
+	<stdio.h>
+	<stdlib.h>
+	"Player.h"
+	"Mob.h"
+	"Equipement.h"
+	"StuffItem.h"
+
+1455031738 source:d:\documents\project_rpg\project_rpg_c\projet_rpg\stuffitem.c
+	<stdio.h>
+	<stdlib.h>
+	"Player.h"
+	"Mob.h"
+	"Equipement.h"
+	"StuffItem.h"
+
+1455006963 source:d:\documents\project_rpg\project_rpg_c\projet_rpg\usableitem.c
+	<stdio.h>
+	<stdlib.h>
+	"Usableitem.h"
+
+1455031362 source:d:\documents\project_rpg\project_rpg_c\projet_rpg\game.c
+	"game.h"
+
+1455013089 d:\documents\project_rpg\project_rpg_c\projet_rpg\game.h
+

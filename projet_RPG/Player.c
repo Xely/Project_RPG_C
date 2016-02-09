@@ -6,9 +6,6 @@
 #include "Equipement.h"
 #include "StuffItem.h"
 
-
-
-
 Player* Player_ctor(int id, Mob* mob, int lives, int gold, StuffItem** playerItemsList, UsableItem** playerUsableItemsList)
 {
     Player* p = malloc(sizeof(Player));
@@ -76,7 +73,7 @@ Dlist *dlist_append(Dlist *p_list, MobRace mobRace)
 }*/
 
 
-void createPlayer(char name[20], /*int pointsToAttribut*/ Dlist *itemsList)
+void createPlayer(char name[20], int pointsToAttribut, DlistRace* racesList, DlistItems* itemsList)
 {
     //Dlist* playerItemList = dlist_new();
     //createItemsList();

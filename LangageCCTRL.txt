@@ -114,8 +114,8 @@
 			- equipement
 			- butin (comprend une liste de usableitem ET/OU de stuffitem)
 		- Mob.c : contient les fonctions suivantes :
-			- hitMob(Mob* attack, Mob* defence)
-			- hitPlayer(Mob* attack, Player* defence)
+			- hitMob(Mob* attacker, Mob* defender)
+			- hitPlayer(Mob* attacker, Player* defender)
 			- dropLoot(Mob* mob, Player* player)
 			- createRandomMob(char name[20], int pointsToAttribut)
 		- Player.h : contient l'ensemble des informations nécessaire au joueur humain ou IA

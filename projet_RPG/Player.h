@@ -4,8 +4,6 @@
 #include "Mob.h"
 
 
-//void createPlayer(char name[20], /*int pointsToAttribut*/ Dlist* itemsList);
-
 typedef struct Player
 {
     int id;
@@ -17,5 +15,6 @@ typedef struct Player
 } Player;
 
 Player* Player_ctor(int id, Mob* mob, int lives, int gold, StuffItem** playerItemsList, UsableItem** playerUsableItemsList);
+void createPlayer(char name[20], int pointsToAttribut, DlistRace* racesList, DlistItems* itemsList);
 
 #endif
