@@ -59,7 +59,7 @@ void writeToFileRace(DlistRace *p_list)
             fwrite(mobRace,sizeof(MobRace),1,fptr);
             p_temp = p_temp->p_next;
         }
-        printf("\n");
+        //printf("\n");
     }
     fclose(fptr);
 }
@@ -79,7 +79,7 @@ DlistRace* readFromFileRace(){
             dlistRace_append(p_list, *MobRace_ctor(mobRace->name, mobRace->hp, mobRace->attack, mobRace->relativeDefense,
                                                    mobRace->absoluteDefense, mobRace->dodge));
         }
-        printf("\n");
+        //printf("\n");
     }
 
     fclose(fptr);

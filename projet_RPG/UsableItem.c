@@ -60,7 +60,7 @@ void writeToFileUsable(DlistUsable *p_list)
             fwrite(usableItem,sizeof(UsableItem),1,fptr);
             p_temp = p_temp->p_next;
         }
-        printf("\n");
+        //printf("\n");
     }
     fclose(fptr);
 }
@@ -80,7 +80,7 @@ DlistUsable* readFromFileUsable(){
             dlistUsable_append(p_list, *UsableItem_ctor(usableItem->name, usableItem->goldValue, usableItem->duration, usableItem->hp,usableItem->attack,
                                                          usableItem->relativeDefense, usableItem->absoluteDefense, usableItem->dodge));
         }
-        printf("\n");
+        //printf("\n");
     }
 
     fclose(fptr);

@@ -93,7 +93,7 @@ void writeToFileItems(DlistItems *p_list)
             fwrite(stuffItem,sizeof(StuffItem),1,fptr);
             p_temp = p_temp->p_next;
         }
-        printf("\n");
+        //printf("\n");
     }
     fclose(fptr);
 }
@@ -113,7 +113,7 @@ DlistItems* readFromFileItems(){
             dlistItems_append(p_list, *StuffItem_ctor(stuffItem->name, stuffItem->goldValue, stuffItem->typeId, stuffItem->hp,
                                                       stuffItem->attack, stuffItem->relativeDefense, stuffItem->absoluteDefense));
         }
-        printf("\n");
+        //printf("\n");
     }
 
     fclose(fptr);

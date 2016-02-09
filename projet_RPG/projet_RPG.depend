@@ -248,7 +248,9 @@
 
 1455049508 d:\documents\projet c - rpg\projet_rpg\stuffitem.h
 
-1455049466 source:d:\documents\projet c - rpg\projet_rpg\game.c
+1455055697 source:d:\documents\projet c - rpg\projet_rpg\game.c
+	<stdio.h>
+	<stdlib.h>
 	"game.h"
 	"Player.h"
 
@@ -289,7 +291,7 @@
 	"Equipement.h"
 	"MobRace.h"
 
-1455037391 source:d:\documents\projet c - rpg\projet_rpg\mobrace.c
+1455055740 source:d:\documents\projet c - rpg\projet_rpg\mobrace.c
 	<stdio.h>
 	<stdlib.h>
 	"MobRace.h"
@@ -302,7 +304,7 @@
 	"Equipement.h"
 	"StuffItem.h"
 
-1455049466 source:d:\documents\projet c - rpg\projet_rpg\stuffitem.c
+1455055674 source:d:\documents\projet c - rpg\projet_rpg\stuffitem.c
 	<stdio.h>
 	<stdlib.h>
 	"Player.h"
@@ -310,7 +312,7 @@
 	"Equipement.h"
 	"StuffItem.h"
 
-1455045705 source:d:\documents\projet c - rpg\projet_rpg\usableitem.c
+1455055740 source:d:\documents\projet c - rpg\projet_rpg\usableitem.c
 	<stdio.h>
 	<stdlib.h>
 	"Usableitem.h"
