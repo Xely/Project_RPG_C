@@ -29,8 +29,8 @@ typedef struct DlistRace
     struct nodeRace *p_head;
 } DlistRace;
 
-DlistRace *dlistRace_new(void);
-DlistRace *dlistRace_append(DlistRace *p_list, MobRace mobRace);
+DlistRace* dlistRace_new(void);
+DlistRace* dlistRace_append(DlistRace *p_list, MobRace mobRace);
 MobRace* MobRace_ctor(char* name, int hp, int attack, int relativeDefense, int absoluteDefense, int dodge);
 DlistRace* createRaces();
 DlistRace* getRaces();

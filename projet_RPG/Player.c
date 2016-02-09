@@ -6,15 +6,17 @@
 #include "Equipement.h"
 #include "StuffItem.h"
 
-Player* Player_ctor(int id, Mob* mob, int lives, int gold, StuffItem** playerItemsList, UsableItem** playerUsableItemsList)
+Player* Player_ctor(int id, Mob* mob, int lives, int gold, StuffItem** playerInventory,  StuffItem** itemsList, UsableItem** playerPotions, UsableItem** potionsList)
 {
     Player* p = malloc(sizeof(Player));
     p->id = id;
     p->mob = mob;
     p->lives = lives;
     p->gold = gold;
-    p->playerItemsList = playerItemsList;
-    p->playerUsableItemsList = playerUsableItemsList;
+    p->playerInventory = playerInventory;
+    p->itemsList = itemsList;
+    p->playerPotions = playerPotions;
+    p->potionsList = potionsList;
     return p;
 }
 
@@ -73,30 +75,30 @@ Dlist *dlist_append(Dlist *p_list, MobRace mobRace)
 }*/
 
 
-void createPlayer(char name[20], int pointsToAttribut, DlistRace* racesList, DlistItems* itemsList)
+Player* createPlayer(char name[20], int pointsToAttribut, DlistRace* racesList, DlistItems* itemsList, DlistItems* firstInventory, DlistUsable* potionsList)
 {
     //Dlist* playerItemList = dlist_new();
     //createItemsList();
 
-    StuffItem temp_head = returnListElement(itemsList,6);
-    StuffItem* phead = &temp_head;
-    StuffItem temp_chest = returnListElement(itemsList,7);
-    StuffItem* pchest = &temp_chest;
-    StuffItem temp_legs = returnListElement(itemsList,8);
-    StuffItem* plegs = &temp_legs;
-    StuffItem temp_boots = returnListElement(itemsList,9);
-    StuffItem* pboots = &temp_boots;
-    StuffItem temp_lefthand = returnListElement(itemsList,10);
-    StuffItem* plefthand = &temp_lefthand;
-    StuffItem temp_righthand = returnListElement(itemsList,11);
-    StuffItem* prighthand = &temp_righthand;
+    StuffItem* phead = returnListElement(itemsList,0);
+    StuffItem* pchest = returnListElement(itemsList,1);
+    StuffItem* plegs = returnListElement(itemsList,2);
+    StuffItem* pboots = returnListElement(itemsList,3);
+    StuffItem* plefthand = returnListElement(itemsList,4);
+    StuffItem* prighthand = returnListElement(itemsList,5);
 
     Equipment* playerEquipment = Equipment_ctor(phead, pchest, plegs, pboots, plefthand, prighthand);
 
 
+    //Equipment* playerEquipment = Equipment_ctor(returnListElement(itemsList,6), returnListElement(itemsList,7), returnListElement(itemsList,8),
+    //                                            returnListElement(itemsList,9), returnListElement(itemsList,10), returnListElement(itemsList,11));
 
-    /*Mob* playerMob = Mob_ctor(0, name[20], human, 100, 10, 50, 10, 10, playerEquipment);
-    Player* player = Player_ctor(0, playerMob, 3, 500, playerItemList);*/
+
+
+    Mob* playerMob = Mob_ctor(0, name, &racesList[0], 100, 10, 50, 10, 10, playerEquipment);
+    Player* playerCharacter = Player_ctor(0, playerMob, 3, 500, firstInventory, itemsList, selectFirstPotions(), potionsList);
+
+    return playerCharacter;
 
 }
 

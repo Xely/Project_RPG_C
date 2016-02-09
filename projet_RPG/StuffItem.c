@@ -8,7 +8,7 @@
 #include "StuffItem.h"
 
 void eqpStuffItem(StuffItem* item, Mob* mob);
-void unEqpStuffItem(StuffItem* item, Mob* mob);
+void unEqpStuffItem(StuffItem* item, Mob* mob, DlistItems* itemsList);
 void sellStuffItem(StuffItem* item, Player* player);
 
 StuffItem* StuffItem_ctor(char* name, int goldValue, int typeId, int hp, int attack, int relativeDefense, int absoluteDefense)
@@ -66,14 +66,15 @@ DlistItems *dlistItems_append(DlistItems *p_list, StuffItem stuffItem)
     return p_list;
 }
 
-StuffItem returnListElement(DlistItems *p_list, int position)
+StuffItem* returnListElement(DlistItems *p_list, int position)
 {
     int i = 0;
     struct nodeItems *p_temp = p_list->p_head;
     for(i=0;i<position-1;i++){
         p_temp = p_temp->p_next;
     }
-    return p_temp->stuffItem;
+    StuffItem item_temp = p_temp->stuffItem;
+    return &item_temp;
 }
 
 // writes the whole list in a file
@@ -165,6 +166,12 @@ DlistItems* getItems()
     }
 }
 
+DlistItems* createFirstInventory()
+{
+    DlistItems* firstInventory = dlistItems_new();
+    return firstInventory;
+}
+
 void eqpStuffItem(StuffItem* item, Mob* mob)
 {
     switch(item->typeId)
@@ -190,7 +197,7 @@ void eqpStuffItem(StuffItem* item, Mob* mob)
     }
 }
 
-void unEqpStuffItem(StuffItem* item, Mob* mob)
+void unEqpStuffItem(StuffItem* item, Mob* mob, DlistItems* itemsList)
 {
     /*StuffItem* nohelmet = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
     StuffItem* nochest = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
@@ -199,25 +206,33 @@ void unEqpStuffItem(StuffItem* item, Mob* mob)
     StuffItem* nolefthand = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
     StuffItem* norighthand = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);*/
 
+    /*StuffItem nohelmet = returnListElement(itemsList, 0);
+    StuffItem nochest = returnListElement(itemsList, 1);
+    StuffItem nolegs = returnListElement(itemsList, 2);
+    StuffItem noboots = returnListElement(itemsList, 3);
+    StuffItem nolefthand = returnListElement(itemsList, 4);
+    StuffItem norighthand = returnListElement(itemsList, 5);*/
+
     switch(item->typeId)
     {
     case 0:
-        mob->equipment->head = nohelmet;
+
+        mob->equipment->head = returnListElement(itemsList, 0);
         break;
     case 1:
-        mob->equipment->chest = nochest;
+        mob->equipment->chest = returnListElement(itemsList, 1);
         break;
     case 2:
-        mob->equipment->leggings = nolegs;
+        mob->equipment->leggings = returnListElement(itemsList, 2);
         break;
     case 3:
-        mob->equipment->boots = noboots;
+        mob->equipment->boots = returnListElement(itemsList, 3);
         break;
     case 4:
-        mob->equipment->leftHand = nolefthand;
+        mob->equipment->leftHand = returnListElement(itemsList, 4);
         break;
     case 5:
-        mob->equipment->rightHand = norighthand;
+        mob->equipment->rightHand = returnListElement(itemsList, 5);
         break;
     }
 }

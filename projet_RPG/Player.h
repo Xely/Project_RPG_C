@@ -10,11 +10,14 @@ typedef struct Player
     Mob* mob;
     int lives;
     int gold;
-    StuffItem** playerItemsList;
-    UsableItem** playerUsableItemsList;
+    StuffItem** playerInventory;
+    StuffItem** itemsList;
+    UsableItem** playerPotions;
+    UsableItem** potionsList;
 } Player;
 
-Player* Player_ctor(int id, Mob* mob, int lives, int gold, StuffItem** playerItemsList, UsableItem** playerUsableItemsList);
-void createPlayer(char name[20], int pointsToAttribut, DlistRace* racesList, DlistItems* itemsList);
+
+Player* Player_ctor(int id, Mob* mob, int lives, int gold, StuffItem** playerInventory,  StuffItem** itemsList, UsableItem** playerPotions, UsableItem** potionsList);
+Player* createPlayer(char name[20], int pointsToAttribut, DlistRace* racesList, DlistItems* itemsList, DlistItems* firstInventory, DlistUsable* potionsList);
 
 #endif

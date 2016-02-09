@@ -58,15 +58,14 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Usableitem.h" />
-		<Unit filename="game.c">
+		<Unit filename="gameStart.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="game.h" />
+		<Unit filename="listFunctions.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="testlist.h">
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Extensions>
 			<code_completion />

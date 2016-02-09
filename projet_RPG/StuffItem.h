@@ -34,8 +34,9 @@ StuffItem* StuffItem_ctor(char* name, int goldValue, int typeId, int hp,
                           int attack, int relativeDefense, int absoluteDefense);
 DlistItems *dlistItems_new(void);
 DlistItems *dlistItems_append(DlistItems *p_list, StuffItem stuffItem);
-StuffItem returnListElement(DlistItems *p_list, int position);
+StuffItem* returnListElement(DlistItems *p_list, int position);
 DlistItems* createItemsList();
 DlistItems* getItems();
+DlistItems* createFirstInventory();
 
 #endif
