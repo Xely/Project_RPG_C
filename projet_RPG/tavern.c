@@ -1,0 +1,351 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#include "tavern.h"
+#include "Player.h"
+
+void tavernBuyWeapons(struct Player* player);
+void tavernBuyArmors(struct Player* player);
+void tavernBuyPotions(struct Player* player);
+
+void managePotions(struct Player* player)
+{
+
+}
+
+void manageItems(struct Player* player)
+{
+
+}
+
+void printProfile(struct Player* player)
+{
+    char* userInput = '0';
+    system("cls");
+    printf("%s's profile\n\n", player->mob->name);
+    printf("Attack: %d \t\tRelative Defense: %d\n", player->mob->attack, player->mob->relativeDefense);
+    printf("Health Points: %d\tAbsolute Defense: %d\n", player->mob->hp, player->mob->absoluteDefense);
+    printf("Dodge score: %d \n\n", player->mob->dodge);
+    printf("You have %d lives left, and own %d gold.\n", player->lives, player->gold);
+    printf("(Press enter to continue) ");
+    fflush(stdin);
+    while (userInput != '\r' && userInput != '\n') {
+        userInput = getchar();
+    }
+}
+
+int manageInventory(struct Player* player)
+{
+    char* userInput = '0';
+
+    system("cls");
+    printf("Do you want to see your character's profile (C)\n");
+    printf("or manage your items' inventory (I)\n");
+    printf("or manage your potions (P) ? \n");
+    printf("(Press q to go back to the tavern menu) ");
+    fflush(stdin);
+    scanf("%c", &userInput);
+    if(userInput == 'C' || userInput == 'c'){
+        printProfile(player);
+    }else if(userInput == 'I' || userInput == 'i'){
+        manageItems(player);
+    }else if(userInput == 'P' || userInput == 'p'){
+        managePotions(player);
+    }else if(userInput == 'Q' || userInput == 'q'){
+        return 0;
+    }
+}
+
+/* prints the caracteristics of a given weapon
+ * if there are no more weapons, returns 0 */
+int printWeaponBuy(int n)
+{
+    if(n == dlistItems_length(getItems()) + 1){
+        return 0;
+    }
+    struct StuffItem* item = returnListElementItem(getItems(), n);
+
+    while(item->typeId != 4 && item->typeId != 5){
+        n++;
+        if(n == dlistItems_length(getItems()) + 1){
+            return 0;
+        }else{
+            item = returnListElementItem(getItems(), n);
+        }
+    }
+
+    printf("Name: %s\n\n", item->name);
+    printf("Attack: %d \t\t Absolute Defense: %d\nHealth points: %d \t Relative Defense: %d\n\n",
+           item->attack, item->absoluteDefense, item->hp, item->relativeDefense);
+    printf("Cost : %d gold\n", item->goldValue);
+
+    printf("Buy (B) or go onto the next item (N) ? ");
+    return n;
+}
+
+/* prints the caracteristics of a given armor
+ * if there are no more armors, returns 0 */
+int printArmorBuy(int n)
+{
+    if(n == dlistItems_length(getItems()) + 1){
+        return 0;
+    }
+    struct StuffItem* item = returnListElementItem(getItems(), n);
+
+    while(item->typeId == 4 || item->typeId == 5){
+        n++;
+        if(n == dlistItems_length(getItems()) + 1){
+            return 0;
+        }else{
+            item = returnListElementItem(getItems(), n);
+        }
+    }
+    printf("Name: %s\n\n", item->name);
+    printf("Attack: %d \t\t Absolute Defense: %d\nHealth points: %d \t Relative Defense: %d\n\n",
+           item->attack, item->absoluteDefense, item->hp, item->relativeDefense);
+    printf("Cost : %d gold\n", item->goldValue);
+
+    printf("Buy (B) or go onto the next item (N) ? ");
+    return n;
+}
+
+/* prints the caracteristics of a given potion
+ * if there are no more potions, returns 0 */
+int printPotionBuy(int n)
+{
+    if(n == dlistUsable_length(getUsable()) + 1){
+        return 0;
+    }
+    struct UsableItem* potion = returnListElementUsable(getUsable(), n);
+
+    printf("Name: %s\n\n", potion->name);
+    printf("This potion gives");
+    if(potion->hp != 0){
+        printf(" %d hp ", potion->hp);
+    }else if(potion->attack !=0){
+        printf(" %d attack ", potion->attack);
+    }else if(potion->relativeDefense !=0){
+        printf(" %d relative defense ", potion->relativeDefense);
+    }else if(potion->absoluteDefense !=0){
+        printf(" %d absolute defense ", potion->absoluteDefense);
+    }else if(potion->dodge !=0){
+        printf(" %d dodge ", potion->dodge);
+    }
+    printf("for %d turns.\n", potion->duration);
+    printf("Cost : %d gold\n", potion->goldValue);
+
+    printf("Buy (B) or go onto the next potion (N) ? ");
+    return n;
+}
+
+/* manages a buying interface for a certain type of item:
+ * weapons for 'W'
+ * armors for 'A'
+ * potions for 'P'
+ */
+void tavernBuyItems(struct Player* player, char C)
+{
+    int i = 1;
+    int n = 0;
+    int flag = 1;
+    char* userInput = '0';
+    char* userInput2 = '0';
+    char* userChoice = '0';
+    while(flag){
+        system("cls");
+
+        switch(C){
+        case 'W':
+            i = printWeaponBuy(i);
+            break;
+        case 'A':
+            i = printArmorBuy(i);
+            break;
+        case 'P':
+            i = printPotionBuy(i);
+            break;
+        }
+        /* if the print function returned 0, there are no more items of the given type
+         * skips to the end */
+        if(i == 0){
+            flag = 0;
+            goto noMoreLabel;
+        }
+
+        fflush(stdin);
+        scanf("%c", &userChoice);
+        if(userChoice == 'B' || userChoice == 'b'){
+            /* adds the item to the player's inventory and displays the appropritate message,
+             * depending on the type of item */
+            if(C == 'W' || C == 'A'){
+                struct StuffItem* item = returnListElementItem(getItems(), i);
+                dlistItems_append(player->playerInventory, *item);
+                player->gold -= item->goldValue;
+                printf("%s has been added to your inventory!\n", returnListElementItem(getItems(), i)->name);
+                printf("You have %d gold left.\n", player->gold);
+            }else{
+                struct UsableItem* potion = returnListElementUsable(getUsable(), i);
+                dlistUsable_append(player->playerPotions, *potion);
+                player->gold -= potion->goldValue;
+                printf("%s has been added to your potions!\n", potion->name);
+                printf("You have %d gold left.\n", player->gold);
+            }
+            printf("(Press enter to continue)");
+            fflush(stdin);
+            while (userInput != '\r' && userInput != '\n') {
+                userInput = getchar();
+            }
+            i++;
+        }else if(userChoice == 'N' || userChoice == 'n'){
+            i++;
+        }else if(userChoice == 'Q' || userChoice == 'q'){
+            return 0;
+        }
+    }
+    noMoreLabel: system("cls");
+    printf("I dont have any more items to sell, young man.\n");
+    printf("(Press enter to go back to the Buy menu) ");
+    fflush(stdin);
+    while (userInput2 != '\r' && userInput2 != '\n') {
+                userInput2 = getchar();
+    }
+    tavernBuy(player);
+}
+
+void tavernBuy(struct Player* player)
+{
+    char* userChoice = '0';
+
+    system("cls");
+    printf("I own many items I have been collecting over the years,  travelling around the world.\n");
+    printf("Weapons (W),  armors (A), potions (P), what would you like to buy ?\n");
+    printf("(Press Q to go back to the previous menu) ");
+    fflush(stdin);
+    scanf("%c", &userChoice);
+    if(userChoice == 'W' || userChoice == 'w'){
+        tavernBuyItems(player, 'W');
+    }else if(userChoice == 'A' || userChoice == 'a'){
+        tavernBuyItems(player, 'A');
+    }else if(userChoice == 'P' || userChoice == 'p'){
+        tavernBuyItems(player, 'P');
+    }else if(userChoice == 'Q' || userChoice == 'q'){
+        tavernTrade(player);
+    }
+}
+
+void tavernSell(struct Player* player)
+{
+
+}
+
+// manages the trading at the tavern
+int tavernTrade(struct Player* player)
+{
+    char* userChoice = '0';
+
+    system("cls");
+    printf("Good day, aventurer, \n");
+    printf("would you like to see my collection of weapons,  armors and potions (B)\n");
+    printf("or do you have some items you would like to sell (S) ?\n");
+    printf("(Press Q if you want to get back to the tavern) ");
+    fflush(stdin);
+    scanf("%c", &userChoice);
+    if(userChoice == 'S' || userChoice == 's'){
+        tavernSell(player);
+    } else if(userChoice == 'B' || userChoice == 'b') {
+        tavernBuy(player);
+    } else if(userChoice == 'Q' || userChoice == 'q'){
+        return 0;
+    }
+}
+
+// prints some cool pictures when the player chooses to rest at the tavern, and sets his hp to full
+void tavernRest(struct Player* player)
+{
+    system("cls");
+    int strt_tmr = clock();
+
+    printf("                           +\n");
+    printf("             ---====D                        @\n");
+    printf("    o                 ,,*:*::,.__     *\n");
+    printf("                 * ,)))*)\))* __.=-.             o\n");
+    printf("         |       ,((*(/a a\)-'\n");
+    printf("        -O-    ,))))))( = )                     =( =     +\n");
+    printf("   +     |    ,(((*(((()-(_              *\n");
+    printf("              *))))))/ `*` \ \n");
+    printf("              (((*}(//(_|_)\\                        .\n");
+    printf("              )*))))\\*).( //            +  .\n");
+    printf("     *        (((((*(// , )/                   |\n");
+    printf("               ))))))/ / /`                   -O-     @\n");
+    printf("   +           `(*((((/ /                      |\n");
+    printf("             o  `)))*))`\            *\n");
+    printf("                  `((((\ `-.__     ,      .\n");
+    printf("        .            *)-._    `--~   `\n");
+    printf("    @                +    `~---~~`                *\n");
+    printf("                *       .            o         +\n");
+
+
+    while(clock()<(strt_tmr + 3000)){
+    }
+    system("cls");
+    strt_tmr = clock();
+
+    printf("                             | \n");
+    printf("                     .   |\n");
+    printf("                         |\n");
+    printf("           \    *        |     *    .  /\n");
+    printf("             \        *  |  .        /\n");
+    printf("          .    \     ___---___     /    .\n");
+    printf("                 \.--         --./\n");
+    printf("      ~-_    *  ./               \.   *   _-~\n");
+    printf("         ~-_   /                   \   _-~     *\n");
+    printf("    *       ~-/                     \-~\n");
+    printf("      .      |                       |      .\n");
+    printf("          * |                         | *\n");
+    printf(" -----------|                         |-----------\n");
+    printf("   .        |                         |        .\n");
+    printf("         *   |                       | *\n");
+    printf("            _-\                     /-_    *\n");
+    printf("      .  _-~ . \                   /   ~-_\n");
+    printf("      _-~       `\               /'*      ~-_\n");
+    printf("     ~           /`--___   ___--'\           ~ \n");
+    printf("            *  /        ---     .  \       \n");
+    printf("             /     *     |           \ \n");
+    printf("           /             |   *         \ \n");
+    printf("                      .  |        .\n");
+    printf("                         |\n");
+    printf("                         | \n");
+
+    while(clock()<(strt_tmr + 3000)){
+    }
+    system("cls");
+    printf("After a long night in a sweet bed and a decent breakfast, \nyou feel rested and full of energy. You are now full hp.\n");
+    //player->mob->hp = player->mob->maxhp;
+}
+
+// manages the choices the player has when he enters the tavern
+void enterTavern(struct Player* player)
+{
+    char* userChoice = '0';
+    int flag = 1;
+
+    system("cls");
+    printf("As you enter the tavern, a trader approches you.\n");
+    while(flag){
+        system("cls");
+        printf("Do you wish to trade the merchant (T) \ngo upstairs and rest for the night (R) \n");
+        printf("manage your inventory (I) \nor leave the tavern and travel to the next dungeon (L) ? ");
+        fflush(stdin);
+        scanf("%c", &userChoice);
+        if(userChoice == 'T' || userChoice == 't'){
+            tavernTrade(player);
+        } else if(userChoice == 'R' || userChoice == 'r') {
+            tavernRest(player);
+        } else if(userChoice == 'I' || userChoice == 'i') {
+            manageInventory(player);
+        } else if(userChoice == 'L' || userChoice == 'l'){
+            return 0;
+        }
+    }
+}

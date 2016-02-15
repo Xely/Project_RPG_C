@@ -5,7 +5,6 @@
 #include "MobRace.h"
 #include "Player.h"
 
-
 struct DlistMob *dlistMob_new(void)
 {
     struct DlistMob* p_new = malloc(sizeof *p_new);
@@ -163,6 +162,7 @@ void hitMob(struct Mob* attacker, struct Mob* defender)
     hit += dice(6) + dice(attacker->attack) + dice(attacker->attack);
     hit = hit * (1 - (defender->relativeDefense / 100));
     hit = hit - defender->absoluteDefense;
+    hit = max(hit, 0);
 
     if(dodgeRand != 1) {
         defender->hp -= hit;
@@ -181,6 +181,7 @@ void hitPlayer(struct Mob* attacker, struct Player* defender)
     hit += dice(6) + dice(attacker->attack) + dice(attacker->attack);
     hit = hit * (1 - (defender->mob->relativeDefense / 100));
     hit = hit - defender->mob->absoluteDefense;
+    hit = max(hit, 0);
 
     if(dodgeRand != 1) {
         defender->mob->hp -= hit;

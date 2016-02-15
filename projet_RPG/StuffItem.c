@@ -64,6 +64,92 @@ struct DlistItems *dlistItems_append(struct DlistItems *p_list, struct StuffItem
     return p_list;
 }
 
+struct DlistItems *dlistItems_remove_id(struct DlistItems *p_list, int position)
+{
+    if (p_list != NULL)
+    {
+        struct nodeItems *p_temp = p_list->p_head;
+        int i = 1;
+        while (p_temp != NULL && i <= position)
+        {
+            if (position == i)
+            {
+                if (p_temp->p_next == NULL)
+                {
+                    p_list->p_tail = p_temp->p_prev;
+                    p_list->p_tail->p_next = NULL;
+                }
+                else if (p_temp->p_prev == NULL)
+                {
+                    p_list->p_head = p_temp->p_next;
+                    p_list->p_head->p_prev = NULL;
+                }
+                else
+                {
+                    p_temp->p_next->p_prev = p_temp->p_prev;
+                    p_temp->p_prev->p_next = p_temp->p_next;
+                }
+                free(p_temp);
+                p_list->length--;
+            }
+            else
+            {
+                p_temp = p_temp->p_next;
+            }
+            i++;
+        }
+    }
+    return p_list;
+}
+
+struct DlistItems *dlistItems_remove(struct DlistItems *p_list, struct StuffItem stuffItem)
+{
+    if (p_list != NULL)
+    {
+        struct nodeItems *p_temp = p_list->p_head;
+        int found = 0;
+        while (p_temp != NULL && !found)
+        {
+            if (&p_temp->stuffItem == &stuffItem)
+            {
+                if (p_temp->p_next == NULL)
+                {
+                    p_list->p_tail = p_temp->p_prev;
+                    p_list->p_tail->p_next = NULL;
+                }
+                else if (p_temp->p_prev == NULL)
+                {
+                    p_list->p_head = p_temp->p_next;
+                    p_list->p_head->p_prev = NULL;
+                }
+                else
+                {
+                    p_temp->p_next->p_prev = p_temp->p_prev;
+                    p_temp->p_prev->p_next = p_temp->p_next;
+                }
+                free(p_temp);
+                p_list->length--;
+                found = 1;
+            }
+            else
+            {
+                p_temp = p_temp->p_next;
+            }
+        }
+    }
+    return p_list;
+}
+
+size_t dlistItems_length(struct DlistItems *p_list)
+{
+    size_t ret = 0;
+    if (p_list != NULL)
+    {
+        ret = p_list->length;
+    }
+    return ret;
+}
+
 struct StuffItem* returnListElementItem(struct DlistItems *p_list, int position)
 {
     int i = 0;
@@ -129,15 +215,15 @@ struct DlistItems* createItemsList()
 
     struct StuffItem* nohelmet = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
     dlistItems_append(itemsList, *nohelmet);
-    struct StuffItem* nochest = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
+    struct StuffItem* nochest = StuffItem_ctor("Rien", 0, 1, 0, 0, 0, 0);
     dlistItems_append(itemsList, *nochest);
-    struct StuffItem* nolegs = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
+    struct StuffItem* nolegs = StuffItem_ctor("Rien", 0, 2, 0, 0, 0, 0);
     dlistItems_append(itemsList, *nolegs);
-    struct StuffItem* noboots = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
+    struct StuffItem* noboots = StuffItem_ctor("Rien", 0, 3, 0, 0, 0, 0);
     dlistItems_append(itemsList, *noboots);
-    struct StuffItem* nolefthand = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
+    struct StuffItem* nolefthand = StuffItem_ctor("Rien", 0, 4, 0, 0, 0, 0);
     dlistItems_append(itemsList, *nolefthand);
-    struct StuffItem* norighthand = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
+    struct StuffItem* norighthand = StuffItem_ctor("Rien", 0, 5, 0, 0, 0, 0);
     dlistItems_append(itemsList, *norighthand);
 
 

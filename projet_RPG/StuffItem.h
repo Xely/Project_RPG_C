@@ -34,6 +34,8 @@ struct StuffItem* StuffItem_ctor(char* name, int goldValue, int typeId, int hp,
                           int attack, int relativeDefense, int absoluteDefense);
 struct DlistItems *dlistItems_new(void);
 struct DlistItems *dlistItems_append(struct DlistItems *p_list, struct StuffItem stuffItem);
+struct DlistItems *dlistItems_remove_id(struct DlistItems *p_list, int position);
+struct DlistItems *dlistItems_remove(struct DlistItems *p_list, struct StuffItem stuffItem);
 struct StuffItem* returnListElementItem(struct DlistItems *p_list, int position);
 void writeToFileItems(struct DlistItems *p_list);
 struct DlistItems* readFromFileItems();

@@ -44,6 +44,16 @@ struct DlistUsable* dlistUsable_append(struct DlistUsable *p_list, struct Usable
     return p_list;
 }
 
+size_t dlistUsable_length(struct DlistUsable *p_list)
+{
+    size_t ret = 0;
+    if (p_list != NULL)
+    {
+        ret = p_list->length;
+    }
+    return ret;
+}
+
 struct UsableItem* returnListElementUsable(struct DlistUsable *p_list, int position)
 {
     int i = 0;
