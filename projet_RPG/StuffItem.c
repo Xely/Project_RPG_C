@@ -64,6 +64,92 @@ struct DlistItems *dlistItems_append(struct DlistItems *p_list, struct StuffItem
     return p_list;
 }
 
+struct DlistItems *dlistItems_remove_id(struct DlistItems *p_list, int position)
+{
+    if (p_list != NULL)
+    {
+        struct nodeItems *p_temp = p_list->p_head;
+        int i = 1;
+        while (p_temp != NULL && i <= position)
+        {
+            if (position == i)
+            {
+                if (p_temp->p_next == NULL)
+                {
+                    p_list->p_tail = p_temp->p_prev;
+                    p_list->p_tail->p_next = NULL;
+                }
+                else if (p_temp->p_prev == NULL)
+                {
+                    p_list->p_head = p_temp->p_next;
+                    p_list->p_head->p_prev = NULL;
+                }
+                else
+                {
+                    p_temp->p_next->p_prev = p_temp->p_prev;
+                    p_temp->p_prev->p_next = p_temp->p_next;
+                }
+                free(p_temp);
+                p_list->length--;
+            }
+            else
+            {
+                p_temp = p_temp->p_next;
+            }
+            i++;
+        }
+    }
+    return p_list;
+}
+
+struct DlistItems *dlistItems_remove(struct DlistItems *p_list, struct StuffItem stuffItem)
+{
+    if (p_list != NULL)
+    {
+        struct nodeItems *p_temp = p_list->p_head;
+        int found = 0;
+        while (p_temp != NULL && !found)
+        {
+            if (&p_temp->stuffItem == &stuffItem)
+            {
+                if (p_temp->p_next == NULL)
+                {
+                    p_list->p_tail = p_temp->p_prev;
+                    p_list->p_tail->p_next = NULL;
+                }
+                else if (p_temp->p_prev == NULL)
+                {
+                    p_list->p_head = p_temp->p_next;
+                    p_list->p_head->p_prev = NULL;
+                }
+                else
+                {
+                    p_temp->p_next->p_prev = p_temp->p_prev;
+                    p_temp->p_prev->p_next = p_temp->p_next;
+                }
+                free(p_temp);
+                p_list->length--;
+                found = 1;
+            }
+            else
+            {
+                p_temp = p_temp->p_next;
+            }
+        }
+    }
+    return p_list;
+}
+
+size_t dlistItems_length(struct DlistItems *p_list)
+{
+    size_t ret = 0;
+    if (p_list != NULL)
+    {
+        ret = p_list->length;
+    }
+    return ret;
+}
+
 struct StuffItem* returnListElementItem(struct DlistItems *p_list, int position)
 {
     int i = 0;
@@ -123,21 +209,45 @@ struct DlistItems* readFromFileItems()
     return p_list;
 }
 
+/*Struct StuffItem* idToSlot(struct Mob* mob, int id)
+{
+    switch(id){
+    case 0:
+        return mob->equipment->head;
+        break;
+    case 1:
+        return mob->equipment->chest;
+        break;
+    case 2:
+        return mob->equipment->leggings;
+        break;
+    case 3:
+        return mob->equipment->boots;
+        break;
+    case 4:
+        return mob->equipment->leftHand;
+        break;
+    case 5:
+        return mob->equipment->rightHand;
+        break;
+    }
+}*/
+
 struct DlistItems* createItemsList()
 {
     struct DlistItems* itemsList = dlistItems_new();
 
-    struct StuffItem* nohelmet = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
+    struct StuffItem* nohelmet = StuffItem_ctor("Empty", 0, 0, 0, 0, 0, 0);
     dlistItems_append(itemsList, *nohelmet);
-    struct StuffItem* nochest = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
+    struct StuffItem* nochest = StuffItem_ctor("Empty", 0, 1, 0, 0, 0, 0);
     dlistItems_append(itemsList, *nochest);
-    struct StuffItem* nolegs = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
+    struct StuffItem* nolegs = StuffItem_ctor("Empty", 0, 2, 0, 0, 0, 0);
     dlistItems_append(itemsList, *nolegs);
-    struct StuffItem* noboots = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
+    struct StuffItem* noboots = StuffItem_ctor("Empty", 0, 3, 0, 0, 0, 0);
     dlistItems_append(itemsList, *noboots);
-    struct StuffItem* nolefthand = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
+    struct StuffItem* nolefthand = StuffItem_ctor("Empty", 0, 4, 0, 0, 0, 0);
     dlistItems_append(itemsList, *nolefthand);
-    struct StuffItem* norighthand = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
+    struct StuffItem* norighthand = StuffItem_ctor("Empty", 0, 5, 0, 0, 0, 0);
     dlistItems_append(itemsList, *norighthand);
 
 
@@ -222,6 +332,45 @@ void unEqpStuffItem(struct StuffItem* item, struct Mob* mob)
     case 5:
         mob->equipment->rightHand = returnListElementItem(getItems(), 5);
         break;
+    }
+}
+
+void replaceItemEquip(struct Player* player, int i)
+{
+    struct StuffItem* itemToEquip = returnListElementItem(player->playerInventory, i);
+    struct StuffItem* currentItem;
+
+    switch(itemToEquip->typeId){
+    case 0:
+        currentItem = player->mob->equipment->head;
+        break;
+    case 1:
+        currentItem = player->mob->equipment->chest;
+        break;
+    case 2:
+        currentItem = player->mob->equipment->leggings;
+        break;
+    case 3:
+        currentItem = player->mob->equipment->boots;
+        break;
+    case 4:
+        currentItem = player->mob->equipment->leftHand;
+        break;
+    case 5:
+        currentItem = player->mob->equipment->rightHand;
+        break;
+    }
+    printf("You have equipped %s. ", itemToEquip->name);
+    if(currentItem->name != "Empty"){
+        printf("%s has been placed in your inventory.", currentItem->name);
+        dlistItems_append(player->playerInventory, *currentItem);
+    }
+    printf("\n");
+    eqpStuffItem(itemToEquip, player->mob);
+    if(dlistItems_length(player->playerInventory) == 1){
+        player->playerInventory = dlistItems_new();
+    }else{
+        dlistItems_remove_id(player->playerInventory, i);
     }
 }
 

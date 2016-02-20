@@ -5,7 +5,6 @@
 #include "MobRace.h"
 #include "Player.h"
 
-
 struct DlistMob *dlistMob_new(void)
 {
     struct DlistMob* p_new = malloc(sizeof *p_new);
@@ -158,11 +157,12 @@ void hitMob(struct Mob* attacker, struct Mob* defender)
 {
     int hit = 0;
     int dodgeRand = dice(defender->dodge);
-    printf("You attack %s ", attacker->name, defender->name);
+    printf("You attack %s ", defender->name);
 
     hit += dice(6) + dice(attacker->attack) + dice(attacker->attack);
-    hit = hit * (1 - (defender->relativeDefense / 100));
+    hit = hit * (1 - (int) (defender->relativeDefense / 100));
     hit = hit - defender->absoluteDefense;
+    hit = max(hit, 0);
 
     if(dodgeRand != 1) {
         defender->hp -= hit;
@@ -176,11 +176,12 @@ void hitPlayer(struct Mob* attacker, struct Player* defender)
 {
     int hit = 0;
     int dodgeRand = dice(defender->mob->dodge);
-    printf("%s attacks you ", attacker->name, defender->mob->name);
+    printf("%s attacks you ", attacker->name);
 
     hit += dice(6) + dice(attacker->attack) + dice(attacker->attack);
-    hit = hit * (1 - (defender->mob->relativeDefense / 100));
+    hit = hit * (1 - (int) (defender->mob->relativeDefense / 100));
     hit = hit - defender->mob->absoluteDefense;
+    hit = max(hit, 0);
 
     if(dodgeRand != 1) {
         defender->mob->hp -= hit;
@@ -201,6 +202,11 @@ void createRandomMob(int id, int raceNumber, int pointsToAttribut, struct Player
     struct StuffItem* mobEquipment = Equipment_ctor(returnListElementItem(getItems(),0), returnListElementItem(getItems(),1),
                                                    returnListElementItem(getItems(),2), returnListElementItem(getItems(),3),
                                                    returnListElementItem(getItems(),4), returnListElementItem(getItems(),5));
+
+    /*char* mobName[50];
+    char* race = ;
+    strcpy(mobName, race);
+    strcat(mobName, " mage");*/
 
     struct Mob* randomMob = Mob_ctor(id, returnListElementRace(getRaces(), raceNumber)->name, returnListElementRace(getRaces(), raceNumber),
                                      70, 5, 20, 3, 20, mobEquipment);

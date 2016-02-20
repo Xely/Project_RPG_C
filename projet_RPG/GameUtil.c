@@ -2,6 +2,24 @@
 #include <stdlib.h>
 #include <time.h>
 
+int max(int a, int b)
+{
+    if(a > b){
+        return a;
+    } else {
+        return b;
+    }
+}
+
+int min(int a, int b)
+{
+    if(a > b){
+        return b;
+    } else {
+        return a;
+    }
+}
+
 // returns a random integer between StartValue and endValue
 int doRand(int startValue, int endValue)
 {

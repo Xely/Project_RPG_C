@@ -58,12 +58,24 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Usableitem.h" />
+		<Unit filename="dungeon.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="dungeon.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="game.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="game.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tavern.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tavern.h">
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="testlist.h">
 			<Option target="&lt;{~None~}&gt;" />

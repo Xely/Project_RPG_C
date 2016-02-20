@@ -3,8 +3,7 @@
 #include "Equipement.h"
 
 struct Equipment* Equipment_ctor(struct StuffItem* head, struct StuffItem* chest, struct StuffItem* leggings,
-                                 struct StuffItem* boots, struct StuffItem* leftHand, struct StuffItem* rightHand)
-{
+                                 struct StuffItem* boots, struct StuffItem* leftHand, struct StuffItem* rightHand){
     struct Equipment* p = malloc(sizeof(struct Equipment));
     p->head = head;
     p->chest = chest;

@@ -397,3 +397,116 @@
 	<stdlib.h>
 	"Usableitem.h"
 
+1455313939 source:d:\documents\google drive\projet_rpg\equipement.c
+	<stdio.h>
+	<stdlib.h>
+	"Equipement.h"
+
+1456651585 d:\documents\google drive\projet_rpg\equipement.h
+	"StuffItem.h"
+
+1455313972 d:\documents\google drive\projet_rpg\stuffitem.h
+
+1455984457 source:d:\documents\google drive\projet_rpg\game.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"game.h"
+	"Player.h"
+
+1455491926 d:\documents\google drive\projet_rpg\game.h
+	"Player.h"
+
+1456668849 d:\documents\google drive\projet_rpg\player.h
+	"Mob.h"
+
+1455492544 d:\documents\google drive\projet_rpg\mob.h
+	"MobRace.h"
+	"Equipement.h"
+
+1455989401 d:\documents\google drive\projet_rpg\mobrace.h
+	<stdio.h>
+	<stdlib.h>
+	"Usableitem.h"
+
+1456670670 d:\documents\google drive\projet_rpg\usableitem.h
+
+1455550550 source:d:\documents\google drive\projet_rpg\gameutil.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
+1455489536 source:d:\documents\google drive\projet_rpg\main.c
+	<stdio.h>
+	<stdlib.h>
+	"game.h"
+
+1455992912 source:d:\documents\google drive\projet_rpg\mob.c
+	<stdio.h>
+	<stdlib.h>
+	"Mob.h"
+	"Equipement.h"
+	"MobRace.h"
+	"Player.h"
+
+1456664596 source:d:\documents\google drive\projet_rpg\mobrace.c
+	<stdio.h>
+	<stdlib.h>
+	"MobRace.h"
+
+1456668420 source:d:\documents\google drive\projet_rpg\player.c
+	<stdio.h>
+	<stdlib.h>
+	"Player.h"
+	"Mob.h"
+	"Equipement.h"
+	"StuffItem.h"
+
+1455551879 source:d:\documents\google drive\projet_rpg\stuffitem.c
+	<stdio.h>
+	<stdlib.h>
+	"Player.h"
+	"Mob.h"
+	"Equipement.h"
+	"StuffItem.h"
+
+1455916202 source:d:\documents\google drive\projet_rpg\usableitem.c
+	<stdio.h>
+	<stdlib.h>
+	"Usableitem.h"
+	"Player.h"
+
+1455992420 source:d:\documents\google drive\projet_rpg\dungeon.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"dungeon.h"
+	"Player.h"
+
+1455992475 d:\documents\google drive\projet_rpg\dungeon.h
+	"Player.h"
+
+1455491970 d:\documents\google drive\projet_rpg\dungeon.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"dungeon.h"
+	"Player.h"
+
+1455492012 d:\documents\google drive\projet_rpg\tavern.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"tavern.h"
+	"Player.h"
+
+1455555123 d:\documents\google drive\projet_rpg\tavern.h
+	"Player.h"
+
+1455917636 source:d:\documents\google drive\projet_rpg\tavern.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"tavern.h"
+	"Player.h"
+

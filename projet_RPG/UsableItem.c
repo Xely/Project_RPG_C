@@ -44,6 +44,54 @@ struct DlistUsable* dlistUsable_append(struct DlistUsable *p_list, struct Usable
     return p_list;
 }
 
+struct Dlistusable *dlistUsable_remove_id(struct DlistUsable *p_list, int position)
+{
+    if (p_list != NULL)
+    {
+        struct nodeUsable *p_temp = p_list->p_head;
+        int i = 1;
+        while (p_temp != NULL && i <= position)
+        {
+            if (position == i)
+            {
+                if (p_temp->p_next == NULL)
+                {
+                    p_list->p_tail = p_temp->p_prev;
+                    p_list->p_tail->p_next = NULL;
+                }
+                else if (p_temp->p_prev == NULL)
+                {
+                    p_list->p_head = p_temp->p_next;
+                    p_list->p_head->p_prev = NULL;
+                }
+                else
+                {
+                    p_temp->p_next->p_prev = p_temp->p_prev;
+                    p_temp->p_prev->p_next = p_temp->p_next;
+                }
+                free(p_temp);
+                p_list->length--;
+            }
+            else
+            {
+                p_temp = p_temp->p_next;
+            }
+            i++;
+        }
+    }
+    return p_list;
+}
+
+size_t dlistUsable_length(struct DlistUsable *p_list)
+{
+    size_t ret = 0;
+    if (p_list != NULL)
+    {
+        ret = p_list->length;
+    }
+    return ret;
+}
+
 struct UsableItem* returnListElementUsable(struct DlistUsable *p_list, int position)
 {
     int i = 0;
