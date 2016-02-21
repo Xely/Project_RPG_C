@@ -6,6 +6,43 @@
 #include "Equipement.h"
 #include "StuffItem.h"
 
+void playerPermanentDeath()
+{
+    char* userInput = '0';
+    system("cls");
+    printf("--GAME OVER--");
+    printf("You have died and have no lives left.\n\n");
+    printf("Here is a recap of your accomplishments during your quest:\n");
+    //printf("You have killed a total of %d mobs.\n", player->mobsKilled);
+    //printf("You have completed a total of %d dungeons", player->dungeonsFinished);
+
+    printf("Press (S) to start a new game or (Q) to leave the game");
+    fflush(stdin);
+    scanf("%c", &userInput);
+    if(userInput == 'S' || userInput == 's'){
+        startGame();
+    }else if(userInput == 'Q' || userInput == 'q'){
+        exit(0);
+    }
+}
+
+void playerDeath(struct Player* player)
+{
+    system("cls");
+    int strt_tmr = clock();
+    printf("After several long minutes of pain, you heart finally stops...\n\n");
+    while(clock()<(strt_tmr + 5000)){
+    }
+    printf("But as the light was about to disapear forever inside you, \nyou start feeling energy back...\n\n");
+    while(clock()<(strt_tmr + 10000)){
+    }
+    printf("You wake up near the tavern, as if nothing ever happened...\n");
+    while(clock()<(strt_tmr + 15000)){
+    }
+    player->lives -= 1;
+    enterTavern(player);
+}
+
 struct Player* Player_ctor(int id, struct Mob* mob, int lives, int gold, struct DlistItems* playerInventory,
                            struct DlistUsable* playerPotions, struct DlistMob** mobList)
 {
@@ -19,61 +56,6 @@ struct Player* Player_ctor(int id, struct Mob* mob, int lives, int gold, struct 
     p->mobList = mobList;
     return p;
 }
-
-/*struct node
-{
-    MobRace mobRace;
-    struct node *p_next;
-    struct node *p_prev;
-};
-
-typedef struct dlist
-{
-    size_t length;
-    struct node *p_tail;
-    struct node *p_head;
-} Dlist;
-
-Dlist *dlist_new(void)
-{
-    Dlist *p_new = malloc(sizeof *p_new);
-    if (p_new != NULL)
-    {
-        p_new->length = 0;
-        p_new->p_head = NULL;
-        p_new->p_tail = NULL;
-    }
-    return p_new;
-}
-
-// adds element at the end of the list
-Dlist *dlist_append(Dlist *p_list, MobRace mobRace)
-{
-    if (p_list != NULL)
-    {
-        struct node *p_new = malloc(sizeof *p_new);
-        if (p_new != NULL)
-        {
-            p_new->mobRace = mobRace;
-            p_new->p_next = NULL;
-            if (p_list->p_tail == NULL)
-            {
-                p_new->p_prev = NULL;
-                p_list->p_head = p_new;
-                p_list->p_tail = p_new;
-            }
-            else
-            {
-                p_list->p_tail->p_next = p_new;
-                p_new->p_prev = p_list->p_tail;
-                p_list->p_tail = p_new;
-            }
-            p_list->length++;
-        }
-    }
-    return p_list;
-}*/
-
 
 struct Player* createPlayer(char* name, int pointsToAttribut)
 {

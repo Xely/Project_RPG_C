@@ -3,7 +3,6 @@
 
 #include "Player.h"
 
-void playerDeath(struct Player* player);
 void startGame();
 
 #endif

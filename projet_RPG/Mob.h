@@ -44,7 +44,7 @@ struct Mob* Mob_ctor(int id, char* name, struct MobRace* mobRace, int hp, int at
 struct DlistMob* getMobs(struct Mob* playerMob);
 
 
-void hitMob(struct Mob* attacker, struct Mob* defender);
+void hitMob(struct Mob* attacker, struct Mob* defender, int flagPotion, int boost, char* boostedStat);
 //void hitPlayer(struct Mob* attacker, struct Player* defender);
 //void createRandomMob(int id, int raceNumber, int pointsToAttribut, struct Player* player);
 //void createDungeonMobs(int mobNumber, struct Player* player);

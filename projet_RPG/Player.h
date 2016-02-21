@@ -19,5 +19,6 @@ struct Player
 struct Player* Player_ctor(int id, struct Mob* mob, int lives, int gold, struct DlistItems* playerInventory, struct DlistUsable* playerPotions,
                            struct DlistMob** mobList);
 struct Player* createPlayer(char* name, int pointsToAttribut);
+void playerDeath(struct Player* player);
 
 #endif
