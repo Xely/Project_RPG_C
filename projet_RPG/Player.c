@@ -6,6 +6,7 @@
 #include "Equipement.h"
 #include "StuffItem.h"
 
+// manages the end of the game when the player has no lives left
 void playerPermanentDeath()
 {
     char* userInput = '0';
@@ -26,6 +27,7 @@ void playerPermanentDeath()
     }
 }
 
+// prints some lore whenever the player dies but still has lives left
 void playerDeath(struct Player* player)
 {
     system("cls");

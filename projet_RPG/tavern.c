@@ -513,6 +513,8 @@ void tavernRest(struct Player* player)
     }
     system("cls");
     printf("After a long night in a sweet bed and a decent breakfast, \nyou feel rested and full of energy. You are now full hp.\n");
+    while(clock()<(strt_tmr + 7000)){
+    }
     //player->mob->hp = player->mob->maxhp;
 }
 
@@ -525,7 +527,6 @@ void enterTavern(struct Player* player)
     system("cls");
     printf("As you enter the tavern, a trader approches you.\n");
     while(flag){
-        system("cls");
         printf("Do you wish to trade the merchant (T) \ngo upstairs and rest for the night (R) \n");
         printf("manage your inventory (I) \nor leave the tavern and travel to the next dungeon (L) ? ");
         fflush(stdin);
@@ -539,5 +540,6 @@ void enterTavern(struct Player* player)
         } else if(userChoice == 'L' || userChoice == 'l'){
             return 0;
         }
+        system("cls");
     }
 }

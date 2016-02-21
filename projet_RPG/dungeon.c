@@ -42,7 +42,7 @@ void printPotionFight(struct Player* player, int n, int* pBoost, char* boostedSt
         *pDuration = potion->duration;
     }
     printf(".\n");
-    printf("Use (U), check the next potion (N) or go back to the fight (Q) ? ");
+    printf("Use it (U), check the next potion (N) or go back to the fight (Q) ? ");
 }
 
 int usePotionFight(struct Player* player, int* pBoost, char* boostedStat, int* pDuration)
@@ -143,23 +143,21 @@ void endDungeon(struct Player* player)
     int userInput = '0';
     int timer = clock();
 
-    while(clock()<(timer + 3000)){
-    }
     system("cls");
     printf("\nAs you defeat the last remaining monster in the dungeon, you walk forward \n");
     printf("and enter in what appears to be the former treasure room of the dungeon...\n\n");
-    while(clock()<(timer + 9000)){
+    while(clock()<(timer + 6000)){
     }
     printf("Most of the treasures seems to be gone...\n\n");
-    while(clock()<(timer + 13000)){
+    while(clock()<(timer + 10000)){
     }
     printf("However, in the back of the room, under a pile of junk,\n");
     printf("you find a item that could very well serve you...\n\n");
-    while(clock()<(timer + 19000)){
+    while(clock()<(timer + 16000)){
     }
     // loot item
     printf("--SUPER ITEM has been added to your inventory!!!--\n\n");
-    printf("After an entire day in this dungeon,  you feel exhausted and could use some rest at the local tavern.\n");
+    printf("After an entire day spent in this dungeon, you feel exhausted and could use some rest at the local tavern.\n");
     printf("(Press enter to continue)");
     while (userInput != '\r' && userInput != '\n') {
         userInput = getchar();

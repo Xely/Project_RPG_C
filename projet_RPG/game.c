@@ -8,17 +8,31 @@
 //void playerDeath(struct Player* player);
 //void startGame();
 
-// prints some lore whenever the player died but still has lives left
+void printGameWelcomeMenu()
+{
+    printf(" =================================  \n");
+    printf("||                               || \n");
+    printf("||                               || \n");
+    printf("||           Welcome to          || \n");
+    printf("||                               || \n");
+    printf("||       THE CHRONICLES OF       || \n");
+    printf("||                               || \n");
+    printf("||            VALHORA            || \n");
+    printf("||                               || \n");
+    printf("||                               || \n");
+    printf(" =================================  \n");
+}
 
 
 // manages the main parts of the game
 void startGame()
 {
-    int flagAlive = 1;
-    /*char name[20];
+    printGameWelcomeMenu();
+    /*int flagAlive = 1;
+    char name[20];
 
-    printf("Hello young aventurer, and welcome to the blabla.\nWhat is your name ?");
-    scanf("%s", name);*/
+    printf("Hello young aventurer, and welcome to the blabla.\nWhat is your name ? ");
+    scanf("%s", name);
 
     struct Player* playerCharacter = createPlayer("Bobby", 10);
 
@@ -26,7 +40,9 @@ void startGame()
     while(flagAlive){
         startDungeon(playerCharacter);
         enterTavern(playerCharacter);
-    }
+    }*/
+
+
 
     //doUsableItemEffect(returnListElementUsable(playerCharacter->playerPotions, 2), playerCharacter->mob);
     //removeUsableItemEffect(returnListElementUsable(playerCharacter->playerPotions, 2), playerCharacter->mob);
