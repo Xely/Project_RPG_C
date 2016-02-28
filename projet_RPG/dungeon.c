@@ -58,7 +58,6 @@ int usePotionFight(struct Player* player, int* pBoost, char* boostedStat, int* p
         if(userInput == 'U' ||userInput == 'u'){
             struct UsableItem* potion = returnListElementUsable(player->playerPotions, i);
             printf("%s used!\n", potion->name);
-            dlistUsable_remove_id(player->playerPotions, i);
             return 1;
         }else if(userInput == 'N' || userInput == 'n'){
             if(i == dlistUsable_length(player->playerPotions)){
@@ -77,7 +76,6 @@ void fightMob(struct Player* player,struct Mob* mob)
 {
     // flag will detect if either the player or the mob dies during the encounter
     int flag = 1;
-    int flagPotion = 0;
     int timer;
     //int potionUsed = 0;
     int boost = 0;
@@ -92,10 +90,11 @@ void fightMob(struct Player* player,struct Mob* mob)
 
     while(flag){
         while(userInput != 'A' & userInput != 'a'){
-            if(flagPotion){
+            /*if(flagPotion){
                 printf("Your potion effect is still active for %d turn" , duration);
                 printf(duration == 1 ? ".\n" : "s.\n");
-            }
+            }*/
+
             Label: printf("\nWhat do you want to do ?\n");
             printf("Attack the monster (A) or use a potion (P) ? ");
             fflush(stdin);
