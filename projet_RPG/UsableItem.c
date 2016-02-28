@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Usableitem.h"
-
+#include "Player.h"
 
 
 struct DlistUsable *dlistUsable_new(void)
@@ -42,6 +42,20 @@ struct DlistUsable* dlistUsable_append(struct DlistUsable *p_list, struct Usable
         }
     }
     return p_list;
+}
+
+struct UsableItem* returnListElementUsable(struct DlistUsable *p_list, int position)
+{
+    int i = 0;
+    struct nodeUsable *p_temp = p_list->p_head;
+    for(i=0;i<position-1;i++){
+        p_temp = p_temp->p_next;
+    }
+    struct UsableItem usable_temp = p_temp->usableItem;
+
+    struct UsableItem* p_usable = UsableItem_ctor(usable_temp.name, usable_temp.goldValue, usable_temp.duration, usable_temp.hp,
+                                                  usable_temp.attack, usable_temp.relativeDefense, usable_temp.absoluteDefense, usable_temp.dodge);
+    return p_usable;
 }
 
 // writes the whole list in a file
@@ -114,12 +128,7 @@ struct DlistUsable* createUsable()
     dlistUsable_append(usableList, *atkp);
     struct UsableItem* armp = UsableItem_ctor("Greater armor potion", 50, 3, 0, 0, 25, 0, 0);
     dlistUsable_append(usableList, *armp);
-    /*struct UsableItem* goblin = UsableItem_ctor("Goblin", 100, 10, 50, 10, 10);
-    dlistUsable_append(usableList, *goblin);
-    struct UsableItem* skeleton = UsableItem_ctor("Skeleton", 100, 10, 50, 10, 10);
-    dlistUsable_append(usableList, *skeleton);
-    struct UsableItem* troll = UsableItem_ctor("Troll", 100, 10, 50, 10, 10);
-    dlistUsable_append(usableList, *troll);*/
+
 
     writeToFileUsable(usableList);
 
@@ -142,21 +151,52 @@ struct DlistUsable* selectFirstPotions()
 }
 
 
-/*void doUsableItemEffect(struct UsableItem* item, struct Mob* mob)
+void doUsableItemEffect(struct UsableItem* item, struct Mob* mob)
 {
-
-
+    if(item->attack != 0){
+        mob->attack += item->attack;
+        printf("You gain %d attack for %d turns!.\n", item->attack, item->duration);
+    }
+    if(item->hp != 0){
+        mob->hp += item->hp;
+        printf("You gained %d hp!.\n", item->hp);
+    }
+    if(item->absoluteDefense != 0){
+        mob->absoluteDefense += item->absoluteDefense;
+        printf("You gain %d Absolute Defense for %d turns!.\n", item->absoluteDefense, item->duration);
+    }
+    if(item->relativeDefense != 0){
+        mob->relativeDefense += item->relativeDefense;
+        printf("You gain %d Relative Defense for %d turns!.\n", item->relativeDefense, item->duration);
+    }
+    if(item->dodge != 0){
+        mob->dodge += item->dodge;
+        printf("You gain %d dodge for %d turns!.\n", item->dodge, item->duration);
+    }
 }
 
 void removeUsableItemEffect(struct UsableItem* item, struct Mob* mob)
 {
-
-
+    if(item->attack != 0){
+        mob->attack -= item->attack;
+        printf("You lost the effect of your %s.\n", item->name);
+    } else if(item->hp != 0){
+        mob->hp -= item->hp;
+        printf("You lost the effect of your %s.\n", item->name);
+    }else if(item->absoluteDefense != 0){
+        mob->absoluteDefense -= item->absoluteDefense;
+        printf("You lost the effect of your %s.\n", item->name);
+    }else if(item->relativeDefense != 0){
+        mob->relativeDefense -= item->relativeDefense;
+        printf("You lost the effect of your %s.\n", item->name);
+    }else if(item->dodge != 0){
+        mob->dodge -= item->dodge;
+        printf("You lost the effect of your %s.\n", item->name);
+    }
 }
 
 void sellUsableitem(struct UsableItem* item, struct Player* player)
 {
-
-
+    int goldGained = (item->goldValue) * 0.7;
+    player->gold += goldGained;
 }
-*/

@@ -1,9 +1,6 @@
 #ifndef USABLEITEM_H_INCLUDED
 #define USABLEITEM_H_INCLUDED
 
-
-
-
 struct UsableItem
 {
     char* name;

@@ -64,7 +64,7 @@ struct DlistItems *dlistItems_append(struct DlistItems *p_list, struct StuffItem
     return p_list;
 }
 
-struct StuffItem* returnListElement(struct DlistItems *p_list, int position)
+struct StuffItem* returnListElementItem(struct DlistItems *p_list, int position)
 {
     int i = 0;
     struct nodeItems *p_temp = p_list->p_head;
@@ -201,40 +201,26 @@ void eqpStuffItem(struct StuffItem* item, struct Mob* mob)
 
 void unEqpStuffItem(struct StuffItem* item, struct Mob* mob)
 {
-    /*struct StuffItem* nohelmet = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
-    struct StuffItem* nochest = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
-    struct StuffItem* nolegs = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
-    struct StuffItem* noboots = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
-    struct StuffItem* nolefthand = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
-    struct StuffItem* norighthand = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);*/
-
-    /*StuffItem nohelmet = returnListElement(itemsList, 0);
-    StuffItem nochest = returnListElement(itemsList, 1);
-    StuffItem nolegs = returnListElement(itemsList, 2);
-    StuffItem noboots = returnListElement(itemsList, 3);
-    StuffItem nolefthand = returnListElement(itemsList, 4);
-    StuffItem norighthand = returnListElement(itemsList, 5);*/
-
     switch(item->typeId)
     {
     case 0:
 
-        mob->equipment->head = returnListElement(getItems(), 0);
+        mob->equipment->head = returnListElementItem(getItems(), 0);
         break;
     case 1:
-        mob->equipment->chest = returnListElement(getItems(), 1);
+        mob->equipment->chest = returnListElementItem(getItems(), 1);
         break;
     case 2:
-        mob->equipment->leggings = returnListElement(getItems(), 2);
+        mob->equipment->leggings = returnListElementItem(getItems(), 2);
         break;
     case 3:
-        mob->equipment->boots = returnListElement(getItems(), 3);
+        mob->equipment->boots = returnListElementItem(getItems(), 3);
         break;
     case 4:
-        mob->equipment->leftHand = returnListElement(getItems(), 4);
+        mob->equipment->leftHand = returnListElementItem(getItems(), 4);
         break;
     case 5:
-        mob->equipment->rightHand = returnListElement(getItems(), 5);
+        mob->equipment->rightHand = returnListElementItem(getItems(), 5);
         break;
     }
 }
@@ -243,5 +229,4 @@ void sellStuffItem(struct StuffItem* item, struct Player* player)
 {
     int goldGained = (item->goldValue) * 0.7;
     player->gold += goldGained;
-
 }

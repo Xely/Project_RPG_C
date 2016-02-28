@@ -133,7 +133,7 @@ struct DlistRace* createRaces()
     dlistRace_append(racesList, *troll);
 
     writeToFileRace(racesList);
-    printf("Fichier de races ecrit.\n");
+
     return racesList;
 }
 

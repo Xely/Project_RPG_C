@@ -7,7 +7,7 @@
 #include "StuffItem.h"
 
 struct Player* Player_ctor(int id, struct Mob* mob, int lives, int gold, struct DlistItems* playerInventory,
-                    struct DlistItems* itemsList, struct DlistUsable* playerPotions, struct DlistUsable* potionsList)
+                           struct DlistUsable* playerPotions, struct DlistMob** mobList)
 {
     struct Player* p = malloc(sizeof(struct Player));
     p->id = id;
@@ -15,9 +15,8 @@ struct Player* Player_ctor(int id, struct Mob* mob, int lives, int gold, struct 
     p->lives = lives;
     p->gold = gold;
     p->playerInventory = playerInventory;
-    p->itemsList = itemsList;
     p->playerPotions = playerPotions;
-    p->potionsList = potionsList;
+    p->mobList = mobList;
     return p;
 }
 
@@ -78,12 +77,18 @@ Dlist *dlist_append(Dlist *p_list, MobRace mobRace)
 
 struct Player* createPlayer(char* name, int pointsToAttribut)
 {
-    struct Equipment* playerEquipment = Equipment_ctor(returnListElement(getItems(),7), returnListElement(getItems(),1), returnListElement(getItems(),2),
-                                                returnListElement(getItems(),3), returnListElement(getItems(),4), returnListElement(getItems(),5));
+    struct Equipment* playerEquipment = Equipment_ctor(returnListElementItem(getItems(),7), returnListElementItem(getItems(),1),
+                                                       returnListElementItem(getItems(),2), returnListElementItem(getItems(),3),
+                                                       returnListElementItem(getItems(),4), returnListElementItem(getItems(),5));
 
     struct Mob* playerMob = Mob_ctor(0, name, returnListElementRace(getRaces(), 1), 100, 10, 50, 10, 10, playerEquipment);
 
-    struct Player* playerCharacter = Player_ctor(0, playerMob, 3, 500, createFirstInventory(), getItems(), selectFirstPotions(), getUsable());
+    /*struct DlistMob* mobsList= dlistMob_new();
+    dlistMob_append(mobsList, *playerMob);
+    writeToFileMob(mobsList);*/
+
+    struct Player* playerCharacter = Player_ctor(0, playerMob, 3, 500, createFirstInventory(), selectFirstPotions(), createMob(playerMob));
+
 
     return playerCharacter;
 

@@ -11,14 +11,13 @@ struct Player
     int lives;
     int gold;
     struct DlistItems* playerInventory;
-    struct DlistItems* itemsList;
     struct DlistUsable* playerPotions;
-    struct DlistUsable* potionsList;
+    struct DlistMob* mobList;
 };
 
 
-struct Player* Player_ctor(int id, struct Mob* mob, int lives, int gold, struct DlistItems* playerInventory,  struct DlistItems* itemsList,
-                    struct DlistUsable* playerPotions, struct DlistUsable* potionsList);
+struct Player* Player_ctor(int id, struct Mob* mob, int lives, int gold, struct DlistItems* playerInventory, struct DlistUsable* playerPotions,
+                           struct DlistMob** mobList);
 struct Player* createPlayer(char* name, int pointsToAttribut);
 
 #endif
