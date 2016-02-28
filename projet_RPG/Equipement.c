@@ -2,9 +2,10 @@
 #include <stdlib.h>
 #include "Equipement.h"
 
-Equipment* Equipment_ctor(StuffItem* head, StuffItem* chest, StuffItem* leggings, StuffItem* boots, StuffItem* leftHand, StuffItem* rightHand)
+struct Equipment* Equipment_ctor(struct StuffItem* head, struct StuffItem* chest, struct StuffItem* leggings,
+                                 struct StuffItem* boots, struct StuffItem* leftHand, struct StuffItem* rightHand)
 {
-    Equipment* p = malloc(sizeof(Equipment));
+    struct Equipment* p = malloc(sizeof(struct Equipment));
     p->head = head;
     p->chest = chest;
     p->leggings = leggings;
@@ -14,17 +15,17 @@ Equipment* Equipment_ctor(StuffItem* head, StuffItem* chest, StuffItem* leggings
     return p;
 }
 
-/*void calcAttack(Equipment* equipment, Mob* mob)
+/*void calcAttack(struct Equipment* equipment, struct Mob* mob)
 {
 
 }
 
-void calcRelDef(Equipment* equipment, Mob* mob)
+void calcRelDef(struct Equipment* equipment, struct Mob* mob)
 {
 
 }
 
-void calcAbsDef(Equipment* equipment, Mob* mob)
+void calcAbsDef(struct Equipment* equipment, struct Mob* mob)
 {
 
 }

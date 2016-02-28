@@ -7,13 +7,13 @@
 #include "Equipement.h"
 #include "StuffItem.h"
 
-void eqpStuffItem(StuffItem* item, Mob* mob);
-void unEqpStuffItem(StuffItem* item, Mob* mob, DlistItems* itemsList);
-void sellStuffItem(StuffItem* item, Player* player);
+void eqpStuffItem(struct StuffItem* item, struct Mob* mob);
+void unEqpStuffItem(struct StuffItem* item, struct Mob* mob);
+void sellStuffItem(struct StuffItem* item, struct Player* player);
 
-StuffItem* StuffItem_ctor(char* name, int goldValue, int typeId, int hp, int attack, int relativeDefense, int absoluteDefense)
+struct StuffItem* StuffItem_ctor(char* name, int goldValue, int typeId, int hp, int attack, int relativeDefense, int absoluteDefense)
 {
-    StuffItem* p = malloc(sizeof(StuffItem));
+    struct StuffItem* p = malloc(sizeof(struct StuffItem));
     p->name = name;
     p->goldValue = goldValue;
     p->typeId = typeId;
@@ -24,11 +24,9 @@ StuffItem* StuffItem_ctor(char* name, int goldValue, int typeId, int hp, int att
     return p;
 }
 
-
-
-DlistItems *dlistItems_new(void)
+struct DlistItems *dlistItems_new(void)
 {
-    DlistItems *p_new = malloc(sizeof *p_new);
+    struct DlistItems *p_new = malloc(sizeof *p_new);
     if (p_new != NULL)
     {
         p_new->length = 0;
@@ -39,7 +37,7 @@ DlistItems *dlistItems_new(void)
 }
 
 // adds element at the end of the list
-DlistItems *dlistItems_append(DlistItems *p_list, StuffItem stuffItem)
+struct DlistItems *dlistItems_append(struct DlistItems *p_list, struct StuffItem stuffItem)
 {
     if (p_list != NULL)
     {
@@ -66,31 +64,34 @@ DlistItems *dlistItems_append(DlistItems *p_list, StuffItem stuffItem)
     return p_list;
 }
 
-StuffItem* returnListElement(DlistItems *p_list, int position)
+struct StuffItem* returnListElement(struct DlistItems *p_list, int position)
 {
     int i = 0;
     struct nodeItems *p_temp = p_list->p_head;
     for(i=0;i<position-1;i++){
         p_temp = p_temp->p_next;
     }
-    StuffItem item_temp = p_temp->stuffItem;
-    return &item_temp;
+    struct StuffItem item_temp = p_temp->stuffItem;
+
+    struct StuffItem* p_item = StuffItem_ctor(item_temp.name, item_temp.goldValue, item_temp.typeId, item_temp.hp, item_temp.attack,
+                                              item_temp.relativeDefense, item_temp.absoluteDefense);
+    return p_item;
 }
 
 // writes the whole list in a file
-void writeToFileItems(DlistItems *p_list)
+void writeToFileItems(struct DlistItems *p_list)
 {
     FILE *fptr;
     fptr = fopen("./itemslist.txt","w+");
 
-    StuffItem* stuffItem = malloc(sizeof(StuffItem));
+    struct StuffItem* stuffItem = malloc(sizeof(struct StuffItem));
     if (p_list != NULL)
     {
         struct nodeItems *p_temp = p_list->p_head;
         while (p_temp != NULL)
         {
             stuffItem = &p_temp->stuffItem;
-            fwrite(stuffItem,sizeof(StuffItem),1,fptr);
+            fwrite(stuffItem,sizeof(struct StuffItem),1,fptr);
             p_temp = p_temp->p_next;
         }
         //printf("\n");
@@ -98,9 +99,10 @@ void writeToFileItems(DlistItems *p_list)
     fclose(fptr);
 }
 
-DlistItems* readFromFileItems(){
-    DlistItems *p_list = dlistItems_new();
-    StuffItem* stuffItem = malloc(sizeof(StuffItem));
+struct DlistItems* readFromFileItems()
+{
+    struct DlistItems *p_list = dlistItems_new();
+    struct StuffItem* stuffItem = malloc(sizeof(struct StuffItem));
     FILE *fptr;
 
     fptr=fopen("./itemslist.txt","r");
@@ -109,7 +111,7 @@ DlistItems* readFromFileItems(){
         /* File was opened successfully. */
 
         /* Attempt to read element one by one */
-        while (fread(stuffItem,sizeof(StuffItem),1,fptr) == 1) {
+        while (fread(stuffItem,sizeof(struct StuffItem),1,fptr) == 1) {
             dlistItems_append(p_list, *StuffItem_ctor(stuffItem->name, stuffItem->goldValue, stuffItem->typeId, stuffItem->hp,
                                                       stuffItem->attack, stuffItem->relativeDefense, stuffItem->absoluteDefense));
         }
@@ -121,44 +123,44 @@ DlistItems* readFromFileItems(){
     return p_list;
 }
 
-DlistItems* createItemsList()
+struct DlistItems* createItemsList()
 {
-    DlistItems* itemsList = dlistItems_new();
+    struct DlistItems* itemsList = dlistItems_new();
 
-    StuffItem* nohelmet = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
+    struct StuffItem* nohelmet = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
     dlistItems_append(itemsList, *nohelmet);
-    StuffItem* nochest = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
+    struct StuffItem* nochest = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
     dlistItems_append(itemsList, *nochest);
-    StuffItem* nolegs = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
+    struct StuffItem* nolegs = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
     dlistItems_append(itemsList, *nolegs);
-    StuffItem* noboots = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
+    struct StuffItem* noboots = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
     dlistItems_append(itemsList, *noboots);
-    StuffItem* nolefthand = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
+    struct StuffItem* nolefthand = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
     dlistItems_append(itemsList, *nolefthand);
-    StuffItem* norighthand = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
+    struct StuffItem* norighthand = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
     dlistItems_append(itemsList, *norighthand);
 
 
-    StuffItem* fatheadarmor = StuffItem_ctor("Super casque", 150, 0, 12, 0, 7, 2);
+    struct StuffItem* fatheadarmor = StuffItem_ctor("Super casque", 150, 0, 12, 0, 7, 2);
     dlistItems_append(itemsList, *fatheadarmor);
-    StuffItem* fatchestarmor = StuffItem_ctor("Super torse", 230, 1, 18, 1, 12, 3);
+    struct StuffItem* fatchestarmor = StuffItem_ctor("Super torse", 230, 1, 18, 1, 12, 3);
     dlistItems_append(itemsList, *fatchestarmor);
-    StuffItem* fatlegarmor = StuffItem_ctor("Supers jambis", 200, 2, 20, 0, 9, 2);
+    struct StuffItem* fatlegarmor = StuffItem_ctor("Supers jambis", 200, 2, 20, 0, 9, 2);
     dlistItems_append(itemsList, *fatlegarmor);
-    StuffItem* fatboots = StuffItem_ctor("Super bottes", 80, 3, 12, 0, 5, 1);
+    struct StuffItem* fatboots = StuffItem_ctor("Super bottes", 80, 3, 12, 0, 5, 1);
     dlistItems_append(itemsList, *fatboots);
-    StuffItem* fatshield = StuffItem_ctor("Super bouclier", 180, 4, 0, 0, 15, 5);
+    struct StuffItem* fatshield = StuffItem_ctor("Super bouclier", 180, 4, 0, 0, 15, 5);
     dlistItems_append(itemsList, *fatshield);
-    StuffItem* fatsword = StuffItem_ctor("Super epee", 350, 5, 0, 8, 0, 0);
+    struct StuffItem* fatsword = StuffItem_ctor("Super epee", 350, 5, 0, 8, 0, 0);
     dlistItems_append(itemsList, *fatsword);
 
     writeToFileItems(itemsList);
     return itemsList;
 }
 
-DlistItems* getItems()
+struct DlistItems* getItems()
 {
-    DlistItems* itemsList = dlistItems_new();
+    struct DlistItems* itemsList = dlistItems_new();
     if(itemsList == readFromFileItems()){
         return itemsList;
     }else{
@@ -166,13 +168,13 @@ DlistItems* getItems()
     }
 }
 
-DlistItems* createFirstInventory()
+struct DlistItems* createFirstInventory()
 {
-    DlistItems* firstInventory = dlistItems_new();
+    struct DlistItems* firstInventory = dlistItems_new();
     return firstInventory;
 }
 
-void eqpStuffItem(StuffItem* item, Mob* mob)
+void eqpStuffItem(struct StuffItem* item, struct Mob* mob)
 {
     switch(item->typeId)
     {
@@ -197,14 +199,14 @@ void eqpStuffItem(StuffItem* item, Mob* mob)
     }
 }
 
-void unEqpStuffItem(StuffItem* item, Mob* mob, DlistItems* itemsList)
+void unEqpStuffItem(struct StuffItem* item, struct Mob* mob)
 {
-    /*StuffItem* nohelmet = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
-    StuffItem* nochest = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
-    StuffItem* nolegs = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
-    StuffItem* noboots = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
-    StuffItem* nolefthand = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
-    StuffItem* norighthand = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);*/
+    /*struct StuffItem* nohelmet = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
+    struct StuffItem* nochest = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
+    struct StuffItem* nolegs = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
+    struct StuffItem* noboots = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
+    struct StuffItem* nolefthand = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);
+    struct StuffItem* norighthand = StuffItem_ctor("Rien", 0, 0, 0, 0, 0, 0);*/
 
     /*StuffItem nohelmet = returnListElement(itemsList, 0);
     StuffItem nochest = returnListElement(itemsList, 1);
@@ -217,27 +219,27 @@ void unEqpStuffItem(StuffItem* item, Mob* mob, DlistItems* itemsList)
     {
     case 0:
 
-        mob->equipment->head = returnListElement(itemsList, 0);
+        mob->equipment->head = returnListElement(getItems(), 0);
         break;
     case 1:
-        mob->equipment->chest = returnListElement(itemsList, 1);
+        mob->equipment->chest = returnListElement(getItems(), 1);
         break;
     case 2:
-        mob->equipment->leggings = returnListElement(itemsList, 2);
+        mob->equipment->leggings = returnListElement(getItems(), 2);
         break;
     case 3:
-        mob->equipment->boots = returnListElement(itemsList, 3);
+        mob->equipment->boots = returnListElement(getItems(), 3);
         break;
     case 4:
-        mob->equipment->leftHand = returnListElement(itemsList, 4);
+        mob->equipment->leftHand = returnListElement(getItems(), 4);
         break;
     case 5:
-        mob->equipment->rightHand = returnListElement(itemsList, 5);
+        mob->equipment->rightHand = returnListElement(getItems(), 5);
         break;
     }
 }
 
-void sellStuffItem(StuffItem* item, Player* player)
+void sellStuffItem(struct StuffItem* item, struct Player* player)
 {
     int goldGained = (item->goldValue) * 0.7;
     player->gold += goldGained;

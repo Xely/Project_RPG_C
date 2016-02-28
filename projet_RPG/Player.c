@@ -6,9 +6,10 @@
 #include "Equipement.h"
 #include "StuffItem.h"
 
-Player* Player_ctor(int id, Mob* mob, int lives, int gold, StuffItem** playerInventory,  StuffItem** itemsList, UsableItem** playerPotions, UsableItem** potionsList)
+struct Player* Player_ctor(int id, struct Mob* mob, int lives, int gold, struct DlistItems* playerInventory,
+                    struct DlistItems* itemsList, struct DlistUsable* playerPotions, struct DlistUsable* potionsList)
 {
-    Player* p = malloc(sizeof(Player));
+    struct Player* p = malloc(sizeof(struct Player));
     p->id = id;
     p->mob = mob;
     p->lives = lives;
@@ -75,28 +76,14 @@ Dlist *dlist_append(Dlist *p_list, MobRace mobRace)
 }*/
 
 
-Player* createPlayer(char name[20], int pointsToAttribut, DlistRace* racesList, DlistItems* itemsList, DlistItems* firstInventory, DlistUsable* potionsList)
+struct Player* createPlayer(char* name, int pointsToAttribut)
 {
-    //Dlist* playerItemList = dlist_new();
-    //createItemsList();
+    struct Equipment* playerEquipment = Equipment_ctor(returnListElement(getItems(),7), returnListElement(getItems(),1), returnListElement(getItems(),2),
+                                                returnListElement(getItems(),3), returnListElement(getItems(),4), returnListElement(getItems(),5));
 
-    StuffItem* phead = returnListElement(itemsList,0);
-    StuffItem* pchest = returnListElement(itemsList,1);
-    StuffItem* plegs = returnListElement(itemsList,2);
-    StuffItem* pboots = returnListElement(itemsList,3);
-    StuffItem* plefthand = returnListElement(itemsList,4);
-    StuffItem* prighthand = returnListElement(itemsList,5);
+    struct Mob* playerMob = Mob_ctor(0, name, returnListElementRace(getRaces(), 1), 100, 10, 50, 10, 10, playerEquipment);
 
-    Equipment* playerEquipment = Equipment_ctor(phead, pchest, plegs, pboots, plefthand, prighthand);
-
-
-    //Equipment* playerEquipment = Equipment_ctor(returnListElement(itemsList,6), returnListElement(itemsList,7), returnListElement(itemsList,8),
-    //                                            returnListElement(itemsList,9), returnListElement(itemsList,10), returnListElement(itemsList,11));
-
-
-
-    Mob* playerMob = Mob_ctor(0, name, &racesList[0], 100, 10, 50, 10, 10, playerEquipment);
-    Player* playerCharacter = Player_ctor(0, playerMob, 3, 500, firstInventory, itemsList, selectFirstPotions(), potionsList);
+    struct Player* playerCharacter = Player_ctor(0, playerMob, 3, 500, createFirstInventory(), getItems(), selectFirstPotions(), getUsable());
 
     return playerCharacter;
 

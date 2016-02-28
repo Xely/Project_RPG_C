@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include "Usableitem.h"
 
-typedef struct MobRace
+struct MobRace
 {
     char* name;
     int hp;
@@ -13,26 +13,29 @@ typedef struct MobRace
     int relativeDefense;
     int absoluteDefense;
     int dodge;
-} MobRace;
+};
 
 struct nodeRace
 {
-    MobRace mobRace;
+    struct MobRace mobRace;
     struct nodeRace *p_next;
     struct nodeRace *p_prev;
 };
 
-typedef struct DlistRace
+struct DlistRace
 {
     size_t length;
     struct nodeRace *p_tail;
     struct nodeRace *p_head;
-} DlistRace;
+};
 
-DlistRace* dlistRace_new(void);
-DlistRace* dlistRace_append(DlistRace *p_list, MobRace mobRace);
-MobRace* MobRace_ctor(char* name, int hp, int attack, int relativeDefense, int absoluteDefense, int dodge);
-DlistRace* createRaces();
-DlistRace* getRaces();
+struct DlistRace* dlistRace_new(void);
+struct DlistRace* dlistRace_append(struct DlistRace *p_list, struct MobRace mobRace);
+struct MobRace* returnListElementRace(struct DlistRace *p_list, int position);
+void writeToFileRace(struct DlistRace *p_list);
+struct DlistRace* readFromFileRace();
+struct MobRace* MobRace_ctor(char* name, int hp, int attack, int relativeDefense, int absoluteDefense, int dodge);
+struct DlistRace* createRaces();
+struct DlistRace* getRaces();
 
 #endif

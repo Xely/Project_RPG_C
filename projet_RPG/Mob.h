@@ -4,21 +4,20 @@
 #include "MobRace.h"
 #include "Equipement.h"
 
-typedef struct Mob
+struct Mob
 {
     int id;
     char* name;
-    MobRace* mobRace;
+    struct MobRace* mobRace;
     int hp;
     int attack;
     int relativeDefense;
     int absoluteDefense;
     int dodge;
-    Equipment* equipment;
-    // loot
-} Mob;
+    struct Equipment* equipment;
+};
 
-Mob* Mob_ctor(int id, char* name, MobRace* mobRace, int hp, int attack, int relativeDefense,
-              int absoluteDefense,int dodge, Equipment* equipment);
+struct Mob* Mob_ctor(int id, char* name, struct MobRace* mobRace, int hp, int attack, int relativeDefense,
+              int absoluteDefense,int dodge, struct Equipment* equipment);
 
 #endif

@@ -4,20 +4,21 @@
 #include "Mob.h"
 
 
-typedef struct Player
+struct Player
 {
     int id;
-    Mob* mob;
+    struct Mob* mob;
     int lives;
     int gold;
-    StuffItem** playerInventory;
-    StuffItem** itemsList;
-    UsableItem** playerPotions;
-    UsableItem** potionsList;
-} Player;
+    struct DlistItems* playerInventory;
+    struct DlistItems* itemsList;
+    struct DlistUsable* playerPotions;
+    struct DlistUsable* potionsList;
+};
 
 
-Player* Player_ctor(int id, Mob* mob, int lives, int gold, StuffItem** playerInventory,  StuffItem** itemsList, UsableItem** playerPotions, UsableItem** potionsList);
-Player* createPlayer(char name[20], int pointsToAttribut, DlistRace* racesList, DlistItems* itemsList, DlistItems* firstInventory, DlistUsable* potionsList);
+struct Player* Player_ctor(int id, struct Mob* mob, int lives, int gold, struct DlistItems* playerInventory,  struct DlistItems* itemsList,
+                    struct DlistUsable* playerPotions, struct DlistUsable* potionsList);
+struct Player* createPlayer(char* name, int pointsToAttribut);
 
 #endif

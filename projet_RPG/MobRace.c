@@ -3,9 +3,9 @@
 
 #include "MobRace.h"
 
-DlistRace *dlistRace_new(void)
+struct DlistRace *dlistRace_new(void)
 {
-    DlistRace* p_new = malloc(sizeof *p_new);
+    struct DlistRace* p_new = malloc(sizeof *p_new);
     if (p_new != NULL)
     {
         p_new->length = 0;
@@ -16,7 +16,7 @@ DlistRace *dlistRace_new(void)
 }
 
 // adds element at the end of the list
-DlistRace *dlistRace_append(DlistRace *p_list, MobRace mobRace)
+struct DlistRace *dlistRace_append(struct DlistRace *p_list, struct MobRace mobRace)
 {
     if (p_list != NULL)
     {
@@ -43,20 +43,34 @@ DlistRace *dlistRace_append(DlistRace *p_list, MobRace mobRace)
     return p_list;
 }
 
+struct MobRace* returnListElementRace(struct DlistRace *p_list, int position)
+{
+    int i = 0;
+    struct nodeRace *p_temp = p_list->p_head;
+    for(i=0;i<position-1;i++){
+        p_temp = p_temp->p_next;
+    }
+    struct MobRace race_temp = p_temp->mobRace;
+
+    struct MobRace* p_race = MobRace_ctor(race_temp.name, race_temp.hp, race_temp.attack, race_temp.relativeDefense,
+                                          race_temp.absoluteDefense, race_temp.dodge);
+    return p_race;
+}
+
 // writes the whole list in a file
-void writeToFileRace(DlistRace *p_list)
+void writeToFileRace(struct DlistRace *p_list)
 {
     FILE *fptr;
     fptr = fopen("./raceslist.txt","w+");
 
-    MobRace* mobRace = malloc(sizeof(MobRace));
+    struct MobRace* mobRace = malloc(sizeof(struct MobRace));
     if (p_list != NULL)
     {
         struct nodeRace *p_temp = p_list->p_head;
         while (p_temp != NULL)
         {
             mobRace = &p_temp->mobRace;
-            fwrite(mobRace,sizeof(MobRace),1,fptr);
+            fwrite(mobRace,sizeof(struct MobRace),1,fptr);
             p_temp = p_temp->p_next;
         }
         //printf("\n");
@@ -64,9 +78,10 @@ void writeToFileRace(DlistRace *p_list)
     fclose(fptr);
 }
 
-DlistRace* readFromFileRace(){
-    DlistRace *p_list = dlistRace_new();
-    MobRace* mobRace = malloc(sizeof(MobRace));
+struct DlistRace* readFromFileRace()
+{
+    struct DlistRace *p_list = dlistRace_new();
+    struct MobRace* mobRace = malloc(sizeof(struct MobRace));
     FILE *fptr;
 
     fptr=fopen("./raceslist.txt","r");
@@ -75,7 +90,7 @@ DlistRace* readFromFileRace(){
         /* File was opened successfully. */
 
         /* Attempt to read element one by one */
-        while (fread(mobRace,sizeof(MobRace),1,fptr) == 1) {
+        while (fread(mobRace,sizeof(struct MobRace),1,fptr) == 1) {
             dlistRace_append(p_list, *MobRace_ctor(mobRace->name, mobRace->hp, mobRace->attack, mobRace->relativeDefense,
                                                    mobRace->absoluteDefense, mobRace->dodge));
         }
@@ -87,9 +102,9 @@ DlistRace* readFromFileRace(){
     return p_list;
 }
 
-MobRace* MobRace_ctor(char* name, int hp, int attack, int relativeDefense, int absoluteDefense, int dodge)
+struct MobRace* MobRace_ctor(char* name, int hp, int attack, int relativeDefense, int absoluteDefense, int dodge)
 {
-    MobRace* p = malloc(sizeof(MobRace));
+    struct MobRace* p = malloc(sizeof(struct MobRace));
     p->name = name;
     p->hp = hp;
     p->attack = attack;
@@ -100,31 +115,31 @@ MobRace* MobRace_ctor(char* name, int hp, int attack, int relativeDefense, int a
 }
 
 // generates a list of all the races in the game
-DlistRace* createRaces()
+struct DlistRace* createRaces()
 {
-    DlistRace* racesList = dlistRace_new();
+    struct DlistRace* racesList = dlistRace_new();
 
-    MobRace* human = MobRace_ctor("Human", 100, 10, 50, 10, 10);
+    struct MobRace* human = MobRace_ctor("Human", 100, 10, 50, 10, 10);
     dlistRace_append(racesList, *human);
-    MobRace* elf = MobRace_ctor("Elf", 100, 10, 50, 10, 10);
+    struct MobRace* elf = MobRace_ctor("Elf", 100, 10, 50, 10, 10);
     dlistRace_append(racesList, *elf);
-    MobRace* dwarf = MobRace_ctor("Dwarf", 100, 10, 50, 10, 10);
+    struct MobRace* dwarf = MobRace_ctor("Dwarf", 100, 10, 50, 10, 10);
     dlistRace_append(racesList, *dwarf);
-    MobRace* goblin = MobRace_ctor("Goblin", 100, 10, 50, 10, 10);
+    struct MobRace* goblin = MobRace_ctor("Goblin", 100, 10, 50, 10, 10);
     dlistRace_append(racesList, *goblin);
-    MobRace* skeleton = MobRace_ctor("Skeleton", 100, 10, 50, 10, 10);
+    struct MobRace* skeleton = MobRace_ctor("Skeleton", 100, 10, 50, 10, 10);
     dlistRace_append(racesList, *skeleton);
-    MobRace* troll = MobRace_ctor("Troll", 100, 10, 50, 10, 10);
+    struct MobRace* troll = MobRace_ctor("Troll", 100, 10, 50, 10, 10);
     dlistRace_append(racesList, *troll);
 
     writeToFileRace(racesList);
-
+    printf("Fichier de races ecrit.\n");
     return racesList;
 }
 
-DlistRace* getRaces()
+struct DlistRace* getRaces()
 {
-    DlistRace* racesList = dlistRace_new();
+    struct DlistRace* racesList = dlistRace_new();
     if(racesList == readFromFileRace()){
         return racesList;
     }else{

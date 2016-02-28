@@ -5,10 +5,10 @@
 #include "MobRace.h"
 
 
-Mob* Mob_ctor(int id, char* name, MobRace* mobRace, int hp, int attack, int relativeDefense, int absoluteDefense,
-               int dodge, Equipment* equipment)
+struct Mob* Mob_ctor(int id, char* name, struct MobRace* mobRace, int hp, int attack, int relativeDefense, int absoluteDefense,
+               int dodge, struct Equipment* equipment)
 {
-    Mob* p = malloc(sizeof(Mob));
+    struct Mob* p = malloc(sizeof(struct Mob));
     p->id = id;
     p->name = name;
     p->mobRace = mobRace;
@@ -23,23 +23,26 @@ Mob* Mob_ctor(int id, char* name, MobRace* mobRace, int hp, int attack, int rela
 }
 
 
-/*void hitMob(Mob* attack, Mob* defence)
+/*void hitMob(struct Mob* attacker, struct Mob* defender)
 {
 
 }
 
-void hitPlayer(Mob* attack, Player* defence)
+void hitPlayer(struct Mob* attacker, struct Player* defender)
 {
 
 }
 
-void dropLoot(Mob* mob, Player* player)
+void dropLoot(struct Mob* mob, struct Player* player)
 {
 
 }
+
 
 void createRandomMob(char name[20], int pointsToAttribut)
 {
-
+    struct Mob* randomMob = MobRace_ctor(name, 70, 5, 20, 3, 20);
+    return randomMob;
 }
+
 */

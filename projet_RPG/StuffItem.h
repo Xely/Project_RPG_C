@@ -4,7 +4,7 @@
 
 // contains every non-usable item in the game
 
-typedef struct StuffItem
+struct StuffItem
 {
     char* name;
     int goldValue;
@@ -14,29 +14,31 @@ typedef struct StuffItem
     int attack;
     int relativeDefense;
     int absoluteDefense;
-} StuffItem;
+};
 
 struct nodeItems
 {
-    StuffItem stuffItem;
+    struct StuffItem stuffItem;
     struct nodeItems *p_next;
     struct nodeItems *p_prev;
 };
 
-typedef struct DlistItems
+struct DlistItems
 {
     size_t length;
     struct nodeItems *p_tail;
     struct nodeItems *p_head;
-} DlistItems;
+};
 
-StuffItem* StuffItem_ctor(char* name, int goldValue, int typeId, int hp,
+struct StuffItem* StuffItem_ctor(char* name, int goldValue, int typeId, int hp,
                           int attack, int relativeDefense, int absoluteDefense);
-DlistItems *dlistItems_new(void);
-DlistItems *dlistItems_append(DlistItems *p_list, StuffItem stuffItem);
-StuffItem* returnListElement(DlistItems *p_list, int position);
-DlistItems* createItemsList();
-DlistItems* getItems();
-DlistItems* createFirstInventory();
+struct DlistItems *dlistItems_new(void);
+struct DlistItems *dlistItems_append(struct DlistItems *p_list, struct StuffItem stuffItem);
+struct StuffItem* returnListElement(struct DlistItems *p_list, int position);
+void writeToFileItems(struct DlistItems *p_list);
+struct DlistItems* readFromFileItems();
+struct DlistItems* createItemsList();
+struct DlistItems* getItems();
+struct DlistItems* createFirstInventory();
 
 #endif

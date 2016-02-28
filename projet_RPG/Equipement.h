@@ -4,16 +4,16 @@
 #include "StuffItem.h"
 
 
-typedef struct Equipment{
-    StuffItem* head;
-    StuffItem* chest;
-    StuffItem* leggings;
-    StuffItem* boots;
-    StuffItem* leftHand;
-    StuffItem* rightHand;
-} Equipment;
+struct Equipment{
+    struct StuffItem* head;
+    struct StuffItem* chest;
+    struct StuffItem* leggings;
+    struct StuffItem* boots;
+    struct StuffItem* leftHand;
+    struct StuffItem* rightHand;
+};
 
-Equipment* Equipment_ctor(StuffItem* head, StuffItem* chest, StuffItem* leggings,
-                          StuffItem* boots, StuffItem* leftHand, StuffItem* rightHand);
+struct Equipment* Equipment_ctor(struct StuffItem* head, struct StuffItem* chest, struct StuffItem* leggings,
+                          struct StuffItem* boots, struct StuffItem* leftHand, struct StuffItem* rightHand);
 
 #endif

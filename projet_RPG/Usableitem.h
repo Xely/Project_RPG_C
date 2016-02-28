@@ -4,7 +4,7 @@
 
 
 
-typedef struct UsableItem
+struct UsableItem
 {
     char* name;
     int goldValue;
@@ -14,25 +14,25 @@ typedef struct UsableItem
     int relativeDefense;
     int absoluteDefense;
     int dodge;
-} UsableItem;
+};
 
 struct nodeUsable
 {
-    UsableItem usableItem;
+    struct UsableItem usableItem;
     struct nodeUsable *p_next;
     struct nodeUsable *p_prev;
 };
 
-typedef struct DlistUsable
+struct DlistUsable
 {
     size_t length;
     struct nodeUsable *p_tail;
-    struct nodeusable *p_head;
-} DlistUsable;
+    struct nodeUsable *p_head;
+};
 
-UsableItem* UsableItem_ctor(char* name, int goldValue, int duration, int hp, int attack, int relativeDefense, int absoluteDefense, int dodge);
-DlistUsable* createUsable();
-DlistUsable* getUsable();
-DlistUsable* selectFirstPotions();
+struct UsableItem* UsableItem_ctor(char* name, int goldValue, int duration, int hp, int attack, int relativeDefense, int absoluteDefense, int dodge);
+struct DlistUsable* createUsable();
+struct DlistUsable* getUsable();
+struct DlistUsable* selectFirstPotions();
 
 #endif
