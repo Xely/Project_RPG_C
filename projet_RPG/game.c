@@ -27,22 +27,19 @@ void printGameWelcomeMenu()
 // manages the main parts of the game
 void startGame()
 {
-    printGameWelcomeMenu();
-    /*int flagAlive = 1;
-    char name[20];
+    //printGameWelcomeMenu();
+    int flagAlive = 1;
+    /*char name[20];
 
     printf("Hello young aventurer, and welcome to the blabla.\nWhat is your name ? ");
-    scanf("%s", name);
+    scanf("%s", name);*/
 
     struct Player* playerCharacter = createPlayer("Bobby", 10);
 
-    //enterTavern(playerCharacter);
     while(flagAlive){
         startDungeon(playerCharacter);
         enterTavern(playerCharacter);
-    }*/
-
-
+    }
 
     //doUsableItemEffect(returnListElementUsable(playerCharacter->playerPotions, 2), playerCharacter->mob);
     //removeUsableItemEffect(returnListElementUsable(playerCharacter->playerPotions, 2), playerCharacter->mob);

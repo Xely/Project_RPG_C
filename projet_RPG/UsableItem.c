@@ -101,7 +101,7 @@ struct UsableItem* returnListElementUsable(struct DlistUsable *p_list, int posit
     }
     struct UsableItem usable_temp = p_temp->usableItem;
 
-    struct UsableItem* p_usable = UsableItem_ctor(usable_temp.name, usable_temp.goldValue, usable_temp.duration, usable_temp.used, usable_temp.hp,
+    struct UsableItem* p_usable = UsableItem_ctor(usable_temp.name, usable_temp.goldValue, usable_temp.totalDuration, usable_temp.durationLeft, usable_temp.used, usable_temp.hp,
                                                   usable_temp.attack, usable_temp.relativeDefense, usable_temp.absoluteDefense, usable_temp.dodge);
     return p_usable;
 }
@@ -139,7 +139,7 @@ struct DlistUsable* readFromFileUsable(){
 
         /* Attempt to read element one by one */
         while (fread(usableItem,sizeof(struct UsableItem),1,fptr) == 1) {
-            dlistUsable_append(p_list, *UsableItem_ctor(usableItem->name, usableItem->goldValue, usableItem->duration, UsableItem->used, usableItem->hp,usableItem->attack,
+            dlistUsable_append(p_list, *UsableItem_ctor(usableItem->name, usableItem->goldValue, usableItem->totalDuration, UsableItem->durationLeft, UsableItem->used, usableItem->hp,usableItem->attack,
                                                          usableItem->relativeDefense, usableItem->absoluteDefense, usableItem->dodge));
         }
         //printf("\n");
@@ -150,14 +150,15 @@ struct DlistUsable* readFromFileUsable(){
     return p_list;
 }
 
-struct UsableItem* UsableItem_ctor(char* name, int goldValue, int duration, int hp,
+struct UsableItem* UsableItem_ctor(char* name, int goldValue, int totalDuration, int hp,
                             int attack, int relativeDefense, int absoluteDefense, int dodge)
 {
     struct UsableItem* p = malloc(sizeof(struct UsableItem));
     p->name = name;
     p->goldValue = goldValue;
-    p->duration = duration;
-    p->used = used;
+    p->totalDuration = totalDuration;
+    p->durationLeft = totalDuration;
+    p->used = 0;
     p->hp = hp;
     p->attack = attack;
     p->relativeDefense = relativeDefense;
@@ -171,11 +172,11 @@ struct DlistUsable* createUsable()
 {
     struct DlistUsable* usableList = dlistUsable_new();
 
-    struct UsableItem* nhealthp = UsableItem_ctor("Instant health potion", 30, 0, 0, 25, 0, 0, 0, 0);
+    struct UsableItem* nhealthp = UsableItem_ctor("Instant health potion", 30, 5, 25, 0, 0, 0, 0);
     dlistUsable_append(usableList, *nhealthp);
-    struct UsableItem* atkp = UsableItem_ctor("Moderate attack potion", 20, 3, 0, 0, 8, 0, 0, 0);
+    struct UsableItem* atkp = UsableItem_ctor("Moderate attack potion", 20, 3, 0, 8, 0, 0, 0);
     dlistUsable_append(usableList, *atkp);
-    struct UsableItem* armp = UsableItem_ctor("Greater armor potion", 50, 3, 0, 0, 0, 25, 0, 0);
+    struct UsableItem* armp = UsableItem_ctor("Greater armor potion", 50, 3, 0, 0, 25, 0, 0);
     dlistUsable_append(usableList, *armp);
 
 

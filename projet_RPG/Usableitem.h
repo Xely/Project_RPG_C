@@ -5,7 +5,8 @@ struct UsableItem
 {
     char* name;
     int goldValue;
-    int duration;
+    int totalDuration;
+    int durationLeft;
     int used;
     int hp;
     int attack;
@@ -28,7 +29,7 @@ struct DlistUsable
     struct nodeUsable *p_head;
 };
 
-struct UsableItem* UsableItem_ctor(char* name, int goldValue, int duration, int used, int hp, int attack, int relativeDefense, int absoluteDefense, int dodge);
+struct UsableItem* UsableItem_ctor(char* name, int goldValue, int totalDuration, int durationLeft, int used, int hp, int attack, int relativeDefense, int absoluteDefense, int dodge);
 struct DlistUsable* createUsable();
 struct DlistUsable* getUsable();
 struct DlistUsable* selectFirstPotions();
