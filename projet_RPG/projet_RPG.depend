@@ -242,53 +242,53 @@
 
 1456674187 d:\documents\project_rpg\project_rpg_c\projet_rpg\game.h
 
-1455313939 source:d:\documents\projet c - rpg\projet_rpg\equipement.c
+1455317539 source:d:\documents\projet c - rpg\projet_rpg\equipement.c
 	<stdio.h>
 	<stdlib.h>
 	"Equipement.h"
 
-1456651585 d:\documents\projet c - rpg\projet_rpg\equipement.h
+1456655185 d:\documents\projet c - rpg\projet_rpg\equipement.h
 	"StuffItem.h"
 
-1455313972 d:\documents\projet c - rpg\projet_rpg\stuffitem.h
+1455317572 d:\documents\projet c - rpg\projet_rpg\stuffitem.h
 
-1456068281 source:d:\documents\projet c - rpg\projet_rpg\game.c
+1459198379 source:d:\documents\projet c - rpg\projet_rpg\game.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
 	"game.h"
 	"Player.h"
 
-1456009813 d:\documents\projet c - rpg\projet_rpg\game.h
+1456013413 d:\documents\projet c - rpg\projet_rpg\game.h
 	"Player.h"
 
-1455550550 source:d:\documents\projet c - rpg\projet_rpg\gameutil.c
+1455554150 source:d:\documents\projet c - rpg\projet_rpg\gameutil.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
 
 1455037391 d:\documents\projet c - rpg\projet_rpg\gameutil.h
 
-1456018574 source:d:\documents\projet c - rpg\projet_rpg\main.c
+1456022174 source:d:\documents\projet c - rpg\projet_rpg\main.c
 	<stdio.h>
 	<stdlib.h>
 	"game.h"
 
-1456009813 d:\documents\projet c - rpg\projet_rpg\player.h
+1456013413 d:\documents\projet c - rpg\projet_rpg\player.h
 	"Mob.h"
 
-1456015668 d:\documents\projet c - rpg\projet_rpg\mob.h
+1459172819 d:\documents\projet c - rpg\projet_rpg\mob.h
 	"MobRace.h"
 	"Equipement.h"
 
-1455989401 d:\documents\projet c - rpg\projet_rpg\mobrace.h
+1455993001 d:\documents\projet c - rpg\projet_rpg\mobrace.h
 	<stdio.h>
 	<stdlib.h>
 	"Usableitem.h"
 
-1456670670 d:\documents\projet c - rpg\projet_rpg\usableitem.h
+1459173003 d:\documents\projet c - rpg\projet_rpg\usableitem.h
 
-1456016103 source:d:\documents\projet c - rpg\projet_rpg\mob.c
+1459172894 source:d:\documents\projet c - rpg\projet_rpg\mob.c
 	<stdio.h>
 	<stdlib.h>
 	"Mob.h"
@@ -296,12 +296,12 @@
 	"MobRace.h"
 	"Player.h"
 
-1455055740 source:d:\documents\projet c - rpg\projet_rpg\mobrace.c
+1459197638 source:d:\documents\projet c - rpg\projet_rpg\mobrace.c
 	<stdio.h>
 	<stdlib.h>
 	"MobRace.h"
 
-1456016167 source:d:\documents\projet c - rpg\projet_rpg\player.c
+1459198389 source:d:\documents\projet c - rpg\projet_rpg\player.c
 	<stdio.h>
 	<stdlib.h>
 	"Player.h"
@@ -309,7 +309,7 @@
 	"Equipement.h"
 	"StuffItem.h"
 
-1455551879 source:d:\documents\projet c - rpg\projet_rpg\stuffitem.c
+1455555479 source:d:\documents\projet c - rpg\projet_rpg\stuffitem.c
 	<stdio.h>
 	<stdlib.h>
 	"Player.h"
@@ -317,7 +317,7 @@
 	"Equipement.h"
 	"StuffItem.h"
 
-1455916202 source:d:\documents\projet c - rpg\projet_rpg\usableitem.c
+1459173097 source:d:\documents\projet c - rpg\projet_rpg\usableitem.c
 	<stdio.h>
 	<stdlib.h>
 	"Usableitem.h"
@@ -512,24 +512,24 @@
 	"tavern.h"
 	"Player.h"
 
-1456066888 source:d:\documents\projet c - rpg\projet_rpg\dungeon.c
+1459172870 source:d:\documents\projet c - rpg\projet_rpg\dungeon.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
 	"dungeon.h"
 	"Player.h"
 
-1456016399 d:\documents\projet c - rpg\projet_rpg\dungeon.h
+1456019999 d:\documents\projet c - rpg\projet_rpg\dungeon.h
 	"Player.h"
 
-1456066572 source:d:\documents\projet c - rpg\projet_rpg\tavern.c
+1459172933 source:d:\documents\projet c - rpg\projet_rpg\tavern.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
 	"tavern.h"
 	"Player.h"
 
-1455555123 d:\documents\projet c - rpg\projet_rpg\tavern.h
+1455558723 d:\documents\projet c - rpg\projet_rpg\tavern.h
 	"Player.h"
 
 1458053891 source:d:\documents\rpg_project\project_rpg_c\projet_rpg\dungeon.c

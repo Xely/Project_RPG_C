@@ -35,8 +35,8 @@ void printPotion(struct Player* player, int n)
     }else if(potion->dodge !=0){
         printf(" %d dodge ", potion->dodge);
     }
-    if(potion->duration != 0){
-            printf("for %d turns.\n\n", potion->duration);
+    if(potion->totalDuration != 0){
+            printf("for %d turns.\n\n", potion->totalDuration);
     }
     printf("Cost : %d gold\n", potion->goldValue);
     printf("(Press (ENTER) to check next potion) ");
@@ -215,8 +215,8 @@ int printPotionBuy(int n)
     }else if(potion->dodge !=0){
         printf(" %d dodge ", potion->dodge);
     }
-    if(potion->duration != 0){
-            printf("for %d turns", potion->duration);
+    if(potion->totalDuration != 0){
+            printf("for %d turns", potion->totalDuration);
     }
     printf(".\n");
     printf("Cost : %d gold\n", potion->goldValue);
@@ -345,8 +345,8 @@ void printPotionSell(struct Player* player, int n)
     }else if(potion->dodge !=0){
         printf(" %d dodge ", potion->dodge);
     }
-    if(potion->duration != 0){
-            printf("for %d turns", potion->duration);
+    if(potion->totalDuration != 0){
+            printf("for %d turns", potion->totalDuration);
     }
     printf(".\n");
     printf("Sell value: %d gold\n", (int) (potion->goldValue*0.7));

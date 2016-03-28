@@ -84,17 +84,13 @@ struct DlistRace* readFromFileRace()
     struct MobRace* mobRace = malloc(sizeof(struct MobRace));
     FILE *fptr;
 
-    fptr=fopen("./raceslist.txt","r");
+    fptr = fopen("./raceslist.txt","r");
 
     if (fptr) {
-        /* File was opened successfully. */
-
-        /* Attempt to read element one by one */
         while (fread(mobRace,sizeof(struct MobRace),1,fptr) == 1) {
             dlistRace_append(p_list, *MobRace_ctor(mobRace->name, mobRace->hp, mobRace->attack, mobRace->relativeDefense,
                                                    mobRace->absoluteDefense, mobRace->dodge));
         }
-        //printf("\n");
     }
 
     fclose(fptr);

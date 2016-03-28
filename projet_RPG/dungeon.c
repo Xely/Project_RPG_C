@@ -106,14 +106,6 @@ void fightMob(struct Player* player, struct Mob* mob)
                 playerDeath(player);
             }
         }
-
-        if(flagPotion){
-            duration -= 1;
-            if(duration == 0){
-                flagPotion = 0;
-                printf("Your potion effect wore off.\n");
-            }
-        }
         userInput = '0';
     }
 }

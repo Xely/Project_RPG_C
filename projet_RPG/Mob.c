@@ -153,27 +153,13 @@ struct DlistMob* getMobs(struct Mob* playerMob)
 }
 
 // attack of the player againt a monster
-void hitMob(struct Mob* attacker, struct Mob* defender, int flagPotion, int boost, char* boostedStat)
+void hitMob(struct Mob* attacker, struct Mob* defender)
 {
     int hit = 0;
     int playerAttack = attacker->attack;
     int playerAbsDef = attacker->absoluteDefense;
     int playerRelDef = attacker->relativeDefense;
     int playerDodge = attacker->dodge;
-
-    if(flagPotion){
-        if(boostedStat == 'a'){
-            playerAttack += boost;
-        }else if(boostedStat == 'd'){
-            playerRelDef += boost;
-        }else if(boostedStat == 'D'){
-            playerAbsDef += boost;
-        }else if(boostedStat == 'e'){
-            playerDodge += boost;
-        }else if(boostedStat == 'h'){
-            attacker->hp += boost;
-        }
-    }
 
     int dodgeRand = dice(defender->dodge);
     printf("You attack %s ", defender->name);
